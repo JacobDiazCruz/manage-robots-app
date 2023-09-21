@@ -7,6 +7,11 @@ export default function useDarkTheme() {
     setDarkTheme((prev) => !prev);
   };
 
+  /**
+   * Apply the "dark" class to the document's root element
+   * when the darkTheme state is enabled and the user's
+   * system preference is also set to dark mode.
+   */
   useEffect(() => {
     if (
       darkTheme &&
