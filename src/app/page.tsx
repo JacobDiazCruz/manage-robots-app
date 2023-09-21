@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { AiOutlinePlus } from "react-icons/ai";
 import Baby from "../../public/baby.png";
 import Button from "./components/Button";
 
@@ -10,11 +11,12 @@ export default function Home() {
       <div className="w-[800px] mx-auto mt-10">
         <div className="flex justify-between items-center mb-5">
           <h1 className="font-semibold text-xl">Robots</h1>
-          <Button>Add new robot</Button>
+          <Button startIcon={<AiOutlinePlus />}>Add new robot</Button>
         </div>
+
         <section className="list">
           <ul className="w-full">
-            <li className="w-full border rounded-lg p-2">
+            <li className="w-full border rounded-xl p-2 my-3">
               <div className="flex gap-2 items-center">
                 <Image src={Baby} alt="avatar" width={80} height={80} />
                 <div className="w-1/2">
