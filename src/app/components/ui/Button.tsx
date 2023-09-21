@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 interface ButtonProps {
   variant?: "primary" | "secondary" | "tertiary";
   size?: "small" | "medium" | "large";
-  loading?: boolean;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   children: ReactNode;
@@ -29,7 +28,6 @@ const buttonSizes: Record<string, string> = {
 export default function Button({
   variant = "primary",
   size = "medium",
-  loading = false,
   startIcon,
   endIcon,
   id,
@@ -47,7 +45,7 @@ export default function Button({
         ${buttonVariants[variant]}
         ${buttonSizes[size]}
         ${className}
-        font-medium rounded-md hover:opacity-[0.7] transition ease-in-out delay-[300]
+        font-medium rounded-md hover:opacity-[0.7] transition ease-in-out delay-[300] disabled:opacity-[0.5]
       `}
       {...props}
     >

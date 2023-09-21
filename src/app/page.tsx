@@ -16,9 +16,8 @@ export default function Homepage() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [robots, setRobots] = useState<Robot[]>([]);
 
-  const { isLoadingRobots } = usePersistRobotsData(robots, setRobots);
+  const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
   const handleToggleModal = () => {
     setIsModalOpen((prev) => !prev);
@@ -45,13 +44,6 @@ export default function Homepage() {
 
   const handleEditRobot = (robotId: string) => {
     setIsModalOpen(true);
-    setRobots((prev) => {
-      const robotsCopy = [...prev];
-      const filteredRobots = robotsCopy.filter(
-        (robotCopy) => robotCopy.id !== robotId
-      );
-      return filteredRobots;
-    });
   };
 
   return (

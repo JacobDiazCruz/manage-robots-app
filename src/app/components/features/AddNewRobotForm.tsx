@@ -59,7 +59,9 @@ export default function AddNewRobotForm({
           </div>
         </section>
         <section className="mt-5">
-          <label className="dark:text-white">Name</label>
+          <label className="dark:text-white text-sm">
+            Name<span className="text-red-500">*</span>
+          </label>
           <TextField
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -67,7 +69,9 @@ export default function AddNewRobotForm({
           />
         </section>
         <section className="mt-5">
-          <label className="dark:text-white">Purpose</label>
+          <label className="dark:text-white text-sm">
+            Purpose<span className="text-red-500">*</span>
+          </label>
           <TextareaField
             value={purpose}
             className="mt-2"
