@@ -1,10 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import { FiEdit2 } from "react-icons/fi";
+import { PiRobotThin } from "react-icons/pi";
+
+import Image from "next/image";
 import AddNewRobotForm from "./components/features/AddNewRobotForm";
 import Button from "./components/ui/Button";
 import IconButton from "./components/ui/IconButton";
@@ -31,6 +33,15 @@ export default function Homepage() {
     handleToggleModal();
   };
 
+  const DisplayEmpty = () => {
+    return (
+      <div className="text-center py-20 border-t dark:border-neutral-700">
+        <PiRobotThin className="w-20 h-20 m-auto text-neutral-500" />
+        <p className="text-neutral-600 font-light">No robots yet.</p>
+      </div>
+    );
+  };
+
   return (
     <main id="homepage" className="bg-neutral-50 dark:bg-neutral-900 h-[100vh]">
       <div className="w-[800px] mx-auto pt-10">
@@ -48,6 +59,8 @@ export default function Homepage() {
 
         <section className="list">
           <ul className="w-full">
+            {!robots.length && <DisplayEmpty />}
+
             {robots.map((robot: Robot, index: number) => (
               <li
                 key={index}
@@ -69,7 +82,17 @@ export default function Homepage() {
                     </p>
                   </div>
                   <div className="flex ml-auto gap-1">
-                    <IconButton>
+                    <IconButton
+                      onClick={() =>
+                        setRobots((prev) => {
+                          const robotsCopy = [...prev];
+                          const filteredRobots = robotsCopy.filter(
+                            (robotCopy) => robotCopy.id !== robot.id
+                          );
+                          return filteredRobots;
+                        })
+                      }
+                    >
                       <BiTrash className="w-5 h-5 text-neutral-400" />
                     </IconButton>
                     <IconButton>

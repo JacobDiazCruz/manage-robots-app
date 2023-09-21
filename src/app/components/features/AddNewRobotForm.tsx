@@ -4,7 +4,7 @@ import Charlie from "../../../../public/charlie.png";
 import { useState } from "react";
 import { Robot } from "../../types/robot";
 import Button from "../ui/Button";
-import Modal, { ModalContent, ModalFooter, ModalHeader } from "../ui/Modal";
+import Modal, { ModalContent, ModalHeader } from "../ui/Modal";
 import TextareaField from "../ui/TextareaField";
 import TextField from "../ui/TextField";
 import SelectAvatar from "./SelectAvatar";
@@ -26,6 +26,8 @@ export default function AddNewRobotForm({
   const handleToggleAvatarsDropdown = () => {
     setIsAvatarsOpen((prev) => !prev);
   };
+
+  const isSubmitDisabled = !avatar || !name || !purpose;
 
   return (
     <Modal onClose={onClose} className="w-[600px] h-[500px]">
@@ -71,17 +73,18 @@ export default function AddNewRobotForm({
             onChange={(e) => setPurpose(e.target.value)}
           />
         </div>
+        <div className="flex py-5">
+          <Button
+            onClick={() => {
+              handleSubmitForm({ avatar, name, purpose });
+            }}
+            className="ml-auto"
+            disabled={isSubmitDisabled}
+          >
+            Submit
+          </Button>
+        </div>
       </ModalContent>
-      <ModalFooter>
-        <Button
-          onClick={() => {
-            handleSubmitForm({ avatar, name, purpose });
-          }}
-          className="ml-auto"
-        >
-          Submit
-        </Button>
-      </ModalFooter>
     </Modal>
   );
 }

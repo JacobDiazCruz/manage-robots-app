@@ -12,17 +12,9 @@ interface ChildProps {
   children: React.ReactNode;
 }
 
-export const ModalFooter = ({ children }: ChildProps) => {
-  return (
-    <div className="dark:border-neutral-800 flex justify-between p-5 w-full z-[100] bottom-[0] absolute border-t dark:bg-neutral-800 bg-white">
-      {children}
-    </div>
-  );
-};
-
 export const ModalContent = ({ children }: ChildProps) => {
   return (
-    <div className="h-full content overflow-y-auto relative p-7">
+    <div className="h-full content overflow-y-auto relative px-7 py-3">
       {children}
     </div>
   );
@@ -49,7 +41,7 @@ export default function Modal({
   return (
     <>
       <div
-        className="fixed inset-0 w-full h-full dark:bg-neutral-500 bg-neutral-800 opacity-20 z-[600]"
+        className="fixed inset-0 w-full h-full dark:bg-neutral-300 bg-neutral-800 opacity-20 z-[600]"
         onClick={() => !persist && onClose()}
       ></div>
       <dialog

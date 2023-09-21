@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function useDarkTheme() {
-  const [darkTheme, setDarkTheme] = useState(true);
+  const [darkTheme, setDarkTheme] = useState(false);
 
   const handleToggleDarkTheme = () => {
     setDarkTheme((prev) => !prev);
