@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import { FiEdit2 } from "react-icons/fi";
@@ -19,6 +19,7 @@ export default function Homepage() {
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [robots, setRobots] = useState<Robot[]>([]);
+  const [isLoadingRobots, setIsLoadingRobots] = useState<boolean>(true);
 
   const handleToggleModal = () => {
     setIsModalOpen((prev) => !prev);
@@ -32,6 +33,18 @@ export default function Homepage() {
     });
     handleToggleModal();
   };
+
+  useEffect(() => {
+    const initialRobots = JSON.parse(localStorage.getItem("robots") as string);
+    setRobots(initialRobots);
+    setIsLoadingRobots(false);
+  }, []);
+
+  useEffect(() => {
+    if (robots.length) {
+      localStorage.setItem("robots", JSON.stringify(robots));
+    }
+  }, [robots]);
 
   const DisplayEmpty = () => {
     return (
@@ -59,7 +72,7 @@ export default function Homepage() {
 
         <section className="list">
           <ul className="w-full">
-            {!robots.length && <DisplayEmpty />}
+            {!robots.length && !isLoadingRobots && <DisplayEmpty />}
 
             {robots.map((robot: Robot, index: number) => (
               <li
