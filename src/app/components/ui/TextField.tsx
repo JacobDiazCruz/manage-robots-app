@@ -44,10 +44,10 @@ export default function TextField({
       <input
         type={type}
         ref={inputRef}
-        className={[
-          textfieldSize[size],
-          "dark:bg-neutral-900 border dark:border-none rounded-md relative dark:text-white text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5",
-        ].join(" ")}
+        className={`
+          ${textfieldSize[size]}
+          dark:bg-neutral-900 border dark:border-none rounded-md relative dark:text-white text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5",
+        `}
         placeholder={placeholder}
         required={required}
         disabled={disabled}

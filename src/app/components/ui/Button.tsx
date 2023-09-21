@@ -43,12 +43,12 @@ export default function Button({
       id={id}
       type="button"
       disabled={disabled}
-      className={[
-        "font-medium rounded-md hover:opacity-[0.7] transition ease-in-out delay-[300]",
-        buttonVariants[variant],
-        buttonSizes[size],
-        className,
-      ].join(" ")}
+      className={`
+        ${buttonVariants[variant]}
+        ${buttonSizes[size]}
+        ${className}
+        font-medium rounded-md hover:opacity-[0.7] transition ease-in-out delay-[300]
+      `}
       {...props}
     >
       <div className="flex items-center justify-center">
