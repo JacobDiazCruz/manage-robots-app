@@ -8,11 +8,13 @@ import { Robot } from "../../types/robot";
 interface RobotItemProps {
   robot: Robot;
   handleRemoveRobot: (_robotId: string) => void;
+  handleEditRobot: (_robotId: string) => void;
 }
 
 export default function RobotItem({
   robot,
   handleRemoveRobot,
+  handleEditRobot,
 }: RobotItemProps) {
   return (
     <li className="w-full border dark:border-neutral-700 dark:bg-neutral-800 rounded-xl p-2 my-3">
@@ -30,7 +32,7 @@ export default function RobotItem({
           <IconButton onClick={() => handleRemoveRobot(robot.id)}>
             <BiTrash className="w-5 h-5 text-neutral-400" />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => handleEditRobot(robot.id)}>
             <FiEdit2 className="w-5 h-5 text-neutral-400" />
           </IconButton>
         </div>

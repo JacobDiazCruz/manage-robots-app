@@ -43,6 +43,17 @@ export default function Homepage() {
     });
   };
 
+  const handleEditRobot = (robotId: string) => {
+    setIsModalOpen(true);
+    setRobots((prev) => {
+      const robotsCopy = [...prev];
+      const filteredRobots = robotsCopy.filter(
+        (robotCopy) => robotCopy.id !== robotId
+      );
+      return filteredRobots;
+    });
+  };
+
   return (
     <main id="homepage" className="bg-neutral-50 dark:bg-neutral-900 h-[100vh]">
       <div className="w-[800px] mx-auto pt-10">
@@ -68,6 +79,7 @@ export default function Homepage() {
                 key={index}
                 robot={robot}
                 handleRemoveRobot={handleRemoveRobot}
+                handleEditRobot={handleEditRobot}
               />
             ))}
           </ul>

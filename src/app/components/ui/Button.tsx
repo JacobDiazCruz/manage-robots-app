@@ -16,7 +16,7 @@ interface ButtonProps {
 const buttonVariants: Record<string, string> = {
   primary: "dark:bg-white bg-neutral-900 text-white dark:text-neutral-900",
   secondary:
-    "bg-transparent border border-neutral-900 dark:border-neutral-400 dark:text-neutral-400 text-neutral-900",
+    "bg-neutral-100 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 dark:text-neutral-200 text-neutral-700",
   tertiary: "bg-neutral-800 border border-neutral-800 text-neutral-200",
 };
 

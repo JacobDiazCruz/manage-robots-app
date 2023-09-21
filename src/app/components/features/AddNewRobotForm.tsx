@@ -36,7 +36,7 @@ export default function AddNewRobotForm({
         <h1 className="font-semibold dark:text-white">Add New Robot</h1>
       </ModalHeader>
       <ModalContent>
-        <div>
+        <section>
           <div className="flex gap-2 items-center">
             <div className="rounded-full border dark:border-neutral-700">
               <Image src={avatar} alt="" width={80} height={80} />
@@ -57,24 +57,24 @@ export default function AddNewRobotForm({
               />
             )}
           </div>
-        </div>
-        <div className="mt-5">
+        </section>
+        <section className="mt-5">
           <label className="dark:text-white">Name</label>
           <TextField
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="mt-2"
           />
-        </div>
-        <div className="mt-5">
+        </section>
+        <section className="mt-5">
           <label className="dark:text-white">Purpose</label>
           <TextareaField
             value={purpose}
             className="mt-2"
             onChange={(e) => setPurpose(e.target.value)}
           />
-        </div>
-        <div className="flex py-5">
+        </section>
+        <section className="flex py-5">
           <Button
             onClick={() => {
               handleSubmitForm({ id: uuidv1(), avatar, name, purpose });
@@ -84,7 +84,7 @@ export default function AddNewRobotForm({
           >
             Submit
           </Button>
-        </div>
+        </section>
       </ModalContent>
     </Modal>
   );
