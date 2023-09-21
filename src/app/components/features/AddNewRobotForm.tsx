@@ -1,4 +1,5 @@
 import Image, { StaticImageData } from "next/image";
+import { v1 as uuidv1 } from "uuid";
 import Charlie from "../../../../public/charlie.png";
 
 import { useState } from "react";
@@ -76,7 +77,7 @@ export default function AddNewRobotForm({
         <div className="flex py-5">
           <Button
             onClick={() => {
-              handleSubmitForm({ avatar, name, purpose });
+              handleSubmitForm({ id: uuidv1(), avatar, name, purpose });
             }}
             className="ml-auto"
             disabled={isSubmitDisabled}
