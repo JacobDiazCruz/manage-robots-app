@@ -6,17 +6,28 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Baby from "../../public/baby.png";
 import AddNewRobotForm from "./components/features/AddNewRobotForm";
 import Button from "./components/ui/Button";
+import Switch from "./components/ui/Switch";
 
-export default function Home() {
+export default function Homepage() {
+  const [darkTheme, setDarkTheme] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleToggleModal = () => {
     setIsModalOpen((prev) => !prev);
   };
 
+  const handleToggleDarkTheme = () => {
+    setDarkTheme((prev) => !prev);
+  };
+
   return (
     <main id="homepage">
       <div className="w-[800px] mx-auto mt-10">
+        <header className="pb-10 flex">
+          <div className="ml-auto">
+            <Switch value={darkTheme} handleClick={handleToggleDarkTheme} />
+          </div>
+        </header>
         <div className="flex justify-between items-center mb-5">
           <h1 className="font-semibold text-xl">Robots</h1>
           <Button onClick={handleToggleModal} startIcon={<AiOutlinePlus />}>
