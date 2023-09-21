@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Robot } from "../../types/robot";
 import Button from "../ui/Button";
 import Modal, { ModalContent, ModalFooter, ModalHeader } from "../ui/Modal";
 import TextareaField from "../ui/TextareaField";
@@ -6,7 +7,7 @@ import TextField from "../ui/TextField";
 
 interface AddNewRobotFormProps {
   onClose: () => void;
-  handleSubmitForm: ({}) => void;
+  handleSubmitForm: (_robot: Robot) => void;
 }
 
 export default function AddNewRobotForm({

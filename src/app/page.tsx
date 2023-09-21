@@ -11,11 +11,7 @@ import Button from "./components/ui/Button";
 import IconButton from "./components/ui/IconButton";
 import Switch from "./components/ui/Switch";
 import useDarkTheme from "./hooks/useDarkTheme";
-
-interface Robot {
-  name: string;
-  purpose: string;
-}
+import { Robot } from "./types/robot";
 
 export default function Homepage() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
