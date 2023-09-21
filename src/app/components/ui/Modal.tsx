@@ -14,7 +14,7 @@ interface ChildProps {
 
 export const ModalFooter = ({ children }: ChildProps) => {
   return (
-    <div className="dark:border-neutral-800 p-5 w-full z-[100] bottom-[0] absolute border-t dark:bg-darkTheme-600 bg-white">
+    <div className="dark:border-neutral-800 flex justify-between p-5 w-full z-[100] bottom-[0] absolute border-t dark:bg-darkTheme-600 bg-white">
       {children}
     </div>
   );

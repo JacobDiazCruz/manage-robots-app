@@ -46,8 +46,7 @@ export default function TextField({
         ref={inputRef}
         className={[
           textfieldSize[size],
-          "storybook-button font-semibold rounded-md",
-          "border relative text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5",
+          "border rounded-md relative text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5",
         ].join(" ")}
         placeholder={placeholder}
         required={required}
