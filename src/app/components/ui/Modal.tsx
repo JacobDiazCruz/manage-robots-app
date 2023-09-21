@@ -45,26 +45,22 @@ export default function Modal({
   className,
   persist,
   children,
-  showBackdrop = true,
 }: ModalProps) {
   return (
     <>
-      {showBackdrop && (
-        <div
-          className="fixed inset-0 w-full h-full dark:bg-neutral-500 bg-darkTheme-950 opacity-60 z-[600]"
-          onClick={() => !persist && onClose()}
-        ></div>
-      )}
+      <div
+        className="fixed inset-0 w-full h-full dark:bg-neutral-500 bg-neutral-800 opacity-20 z-[600]"
+        onClick={() => !persist && onClose()}
+      ></div>
       <dialog
         open
-        className="
+        className={`
           ${className}
-          ${borderColor}
           dark:bg-darkTheme-600
           bg-white
           shadow-xl
           shadow-sm rounded-lg m-auto fixed inset-0 z-[700] outline-none focus:outline-none
-        "
+        `}
       >
         <div
           onClick={onClose}

@@ -1,17 +1,27 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Baby from "../../public/baby.png";
-import Button from "./components/Button";
+import AddNewRobotForm from "./components/features/AddNewRobotForm";
+import Button from "./components/ui/Button";
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const handleToggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
+
   return (
     <main id="homepage">
       <div className="w-[800px] mx-auto mt-10">
         <div className="flex justify-between items-center mb-5">
           <h1 className="font-semibold text-xl">Robots</h1>
-          <Button startIcon={<AiOutlinePlus />}>Add new robot</Button>
+          <Button onClick={handleToggleModal} startIcon={<AiOutlinePlus />}>
+            Add new robot
+          </Button>
         </div>
 
         <section className="list">
@@ -31,6 +41,8 @@ export default function Home() {
           </ul>
         </section>
       </div>
+
+      {isModalOpen && <AddNewRobotForm onClose={handleToggleModal} />}
     </main>
   );
 }
