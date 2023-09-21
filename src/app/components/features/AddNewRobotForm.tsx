@@ -1,4 +1,5 @@
-import Modal from "../ui/Modal";
+import Modal, { ModalContent } from "../ui/Modal";
+import TextField from "../ui/TextField";
 
 interface AddNewRobotFormProps {
   onClose: () => void;
@@ -7,7 +8,9 @@ interface AddNewRobotFormProps {
 export default function AddNewRobotForm({ onClose }: AddNewRobotFormProps) {
   return (
     <Modal onClose={onClose} className="w-[600px] h-[600px]">
-      test
+      <ModalContent>
+        <TextField />
+      </ModalContent>
     </Modal>
   );
 }
