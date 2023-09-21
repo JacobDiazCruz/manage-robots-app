@@ -6,9 +6,13 @@ import TextField from "../ui/TextField";
 
 interface AddNewRobotFormProps {
   onClose: () => void;
+  handleSubmitForm: ({}) => void;
 }
 
-export default function AddNewRobotForm({ onClose }: AddNewRobotFormProps) {
+export default function AddNewRobotForm({
+  onClose,
+  handleSubmitForm,
+}: AddNewRobotFormProps) {
   const [name, setName] = useState<string>("");
   const [purpose, setPurpose] = useState<string>("");
 
@@ -36,7 +40,14 @@ export default function AddNewRobotForm({ onClose }: AddNewRobotFormProps) {
         </div>
       </ModalContent>
       <ModalFooter>
-        <Button className="ml-auto">Submit</Button>
+        <Button
+          onClick={() => {
+            handleSubmitForm({ name, purpose });
+          }}
+          className="ml-auto"
+        >
+          Submit
+        </Button>
       </ModalFooter>
     </Modal>
   );
