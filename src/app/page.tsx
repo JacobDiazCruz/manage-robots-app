@@ -7,22 +7,19 @@ import Baby from "../../public/baby.png";
 import AddNewRobotForm from "./components/features/AddNewRobotForm";
 import Button from "./components/ui/Button";
 import Switch from "./components/ui/Switch";
+import useDarkTheme from "./hooks/useDarkTheme";
 
 export default function Homepage() {
-  const [darkTheme, setDarkTheme] = useState(true);
+  const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleToggleModal = () => {
     setIsModalOpen((prev) => !prev);
   };
 
-  const handleToggleDarkTheme = () => {
-    setDarkTheme((prev) => !prev);
-  };
-
   return (
-    <main id="homepage">
-      <div className="w-[800px] mx-auto mt-10">
+    <main id="homepage" className="bg-white dark:bg-black h-[100vh]">
+      <div className="w-[800px] mx-auto pt-10">
         <header className="pb-10 flex">
           <div className="ml-auto">
             <Switch value={darkTheme} handleClick={handleToggleDarkTheme} />
