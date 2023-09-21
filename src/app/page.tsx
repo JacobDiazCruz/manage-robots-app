@@ -5,7 +5,6 @@ import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import { FiEdit2 } from "react-icons/fi";
-import Baby from "../../public/baby.png";
 import AddNewRobotForm from "./components/features/AddNewRobotForm";
 import Button from "./components/ui/Button";
 import IconButton from "./components/ui/IconButton";
@@ -55,7 +54,12 @@ export default function Homepage() {
                 className="w-full border dark:border-neutral-700 dark:bg-neutral-800 rounded-xl p-2 my-3"
               >
                 <div className="flex gap-2 items-center">
-                  <Image src={Baby} alt="avatar" width={80} height={80} />
+                  <Image
+                    src={robot.avatar}
+                    alt="avatar"
+                    width={80}
+                    height={80}
+                  />
                   <div className="w-1/2">
                     <h4 className="truncate dark:text-white font-semibold">
                       {robot.name}

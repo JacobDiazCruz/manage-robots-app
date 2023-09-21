@@ -1,5 +1,5 @@
 import Image, { StaticImageData } from "next/image";
-import Baby from "../../../../public/baby.png";
+import Charlie from "../../../../public/charlie.png";
 
 import { useState } from "react";
 import { Robot } from "../../types/robot";
@@ -19,7 +19,7 @@ export default function AddNewRobotForm({
 }: AddNewRobotFormProps) {
   const [name, setName] = useState<string>("");
   const [purpose, setPurpose] = useState<string>("");
-  const [avatar, setAvatar] = useState<StaticImageData>(Baby);
+  const [avatar, setAvatar] = useState<StaticImageData>(Charlie);
 
   const [isAvatarsOpen, setIsAvatarsOpen] = useState<boolean>(false);
 
@@ -36,7 +36,7 @@ export default function AddNewRobotForm({
         <div>
           <div className="flex gap-2 items-center">
             <div className="rounded-full border dark:border-neutral-700">
-              <Image src={Baby} alt="" width={80} height={80} />
+              <Image src={avatar} alt="" width={80} height={80} />
             </div>
             <Button
               variant="secondary"

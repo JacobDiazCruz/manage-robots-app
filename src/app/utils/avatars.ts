@@ -1,14 +1,15 @@
-import Baby from "../../../public/baby.png";
+import Charlie from "../../../public/charlie.png";
+import Nala from "../../../public/nala.png";
+import Sadie from "../../../public/sadie.png";
 
 export const ROBOT_AVATARS = [
-  Baby,
-  Baby,
-  Baby,
-  Baby,
-  Baby,
-  Baby,
-  Baby,
-  Baby,
-  Baby,
-  Baby,
+  Charlie,
+  Sadie,
+  Nala,
+  Charlie,
+  Sadie,
+  Nala,
+  Charlie,
+  Sadie,
+  Nala,
 ];
