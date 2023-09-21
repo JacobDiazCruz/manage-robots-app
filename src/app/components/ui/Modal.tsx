@@ -14,7 +14,7 @@ interface ChildProps {
 
 export const ModalFooter = ({ children }: ChildProps) => {
   return (
-    <div className="dark:border-neutral-800 flex justify-between p-5 w-full z-[100] bottom-[0] absolute border-t dark:bg-darkTheme-600 bg-white">
+    <div className="dark:border-neutral-800 flex justify-between p-5 w-full z-[100] bottom-[0] absolute border-t dark:bg-neutral-800 bg-white">
       {children}
     </div>
   );
@@ -30,7 +30,7 @@ export const ModalContent = ({ children }: ChildProps) => {
 
 export const ModalHeader = ({ children }: ChildProps) => {
   return (
-    <div className="py-5 px-7 w-full top-0 sticky z-[100] dark:bg-darkTheme-600 bg-white">
+    <div className="py-5 px-7 w-full top-0 sticky z-[100] dark:bg-neutral-800 bg-white">
       {children}
     </div>
   );
@@ -56,10 +56,7 @@ export default function Modal({
         open
         className={`
           ${className}
-          dark:bg-darkTheme-600
-          bg-white
-          shadow-xl
-          shadow-sm rounded-lg m-auto fixed inset-0 z-[700] outline-none focus:outline-none
+          dark:bg-neutral-800 bg-white shadow-xl shadow-sm rounded-lg m-auto fixed inset-0 z-[700] outline-none focus:outline-none
         `}
       >
         <div

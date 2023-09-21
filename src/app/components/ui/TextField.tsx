@@ -46,7 +46,7 @@ export default function TextField({
         ref={inputRef}
         className={[
           textfieldSize[size],
-          "border rounded-md relative text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5",
+          "dark:bg-neutral-900 border dark:border-none rounded-md relative text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5",
         ].join(" ")}
         placeholder={placeholder}
         required={required}

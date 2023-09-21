@@ -29,7 +29,7 @@ export default function TextareaField({
           ${startIcon && "pl-10"}
           ${className}
           bg-white
-          dark:bg-neutral-950 dark:border-neutral-800 border-gray-200 dark:placeholder-neutral-500 placeholder-neutral-400
+          dark:bg-neutral-900 dark:border-neutral-800 border-gray-200 dark:placeholder-neutral-500 placeholder-neutral-400
           border text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-300 block w-full p-2.5 border-gray-200 placeholder-gray-400`}
         placeholder={placeholder}
         required={required}

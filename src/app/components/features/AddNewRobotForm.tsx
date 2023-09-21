@@ -15,11 +15,11 @@ export default function AddNewRobotForm({ onClose }: AddNewRobotFormProps) {
   return (
     <Modal onClose={onClose} className="w-[600px] h-[500px]">
       <ModalHeader>
-        <h1 className="font-semibold">Add New Robot</h1>
+        <h1 className="font-semibold dark:text-white">Add New Robot</h1>
       </ModalHeader>
       <ModalContent>
         <div>
-          <label>Name</label>
+          <label className="dark:text-white">Name</label>
           <TextField
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -27,7 +27,7 @@ export default function AddNewRobotForm({ onClose }: AddNewRobotFormProps) {
           />
         </div>
         <div className="mt-5">
-          <label>Purpose</label>
+          <label className="dark:text-white">Purpose</label>
           <TextareaField
             value={purpose}
             className="mt-2"
