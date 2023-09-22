@@ -41,7 +41,7 @@ export default function Modal({
   return (
     <>
       <div
-        className="fixed inset-0 w-full h-full dark:bg-neutral-300 bg-neutral-800 opacity-20 z-[600]"
+        className="fixed inset-0 w-full h-full dark:bg-neutral-300 bg-neutral-800 opacity-50 z-[600]"
         onClick={() => !persist && onClose()}
       ></div>
       <dialog
