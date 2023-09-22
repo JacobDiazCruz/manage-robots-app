@@ -1,15 +1,15 @@
 import Button from "../../ui/Button";
 import Modal, { ModalHeader } from "../../ui/Modal";
 
-interface DeleteConfirmationModalProps {
+interface RobotDeleteModalProps {
   onClose: () => void;
   handleDeleteRobot: () => void;
 }
 
-export default function DeleteConfirmationModal({
+export default function RobotDeleteModal({
   onClose,
   handleDeleteRobot,
-}: DeleteConfirmationModalProps) {
+}: RobotDeleteModalProps) {
   return (
     <Modal onClose={onClose}>
       <ModalHeader>

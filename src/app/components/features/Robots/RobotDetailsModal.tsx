@@ -2,15 +2,15 @@ import Image from "next/image";
 import { Robot } from "../../../types/robot";
 import Modal, { ModalContent } from "../../ui/Modal";
 
-interface ViewDetailsModalProps {
+interface RobotDetailsModalProps {
   onClose: () => void;
   robot: Robot;
 }
 
-export default function ViewDetailsModal({
+export default function RobotDetailsModal({
   onClose,
   robot,
-}: ViewDetailsModalProps) {
+}: RobotDetailsModalProps) {
   return (
     <Modal onClose={onClose} className="w-[400px]">
       <div className="absolute -m-8">

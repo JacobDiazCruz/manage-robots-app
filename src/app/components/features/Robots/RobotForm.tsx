@@ -8,7 +8,7 @@ import Button from "../../ui/Button";
 import Modal, { ModalContent, ModalHeader } from "../../ui/Modal";
 import TextareaField from "../../ui/TextareaField";
 import TextField from "../../ui/TextField";
-import SelectAvatar from "./SelectAvatar";
+import RobotAvatars from "./RobotAvatars";
 
 interface RobotFormProps {
   onClose: () => void;
@@ -27,11 +27,11 @@ export default function RobotForm({
   const [purpose, setPurpose] = useState<string>("");
   const [avatar, setAvatar] = useState<StaticImageData>(Charlie);
 
-  const [isAvatarsOpen, setIsAvatarsOpen] = useState<boolean>(false);
+  const [showAvatars, setShowAvatars] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>("");
 
-  const handleToggleAvatarsDropdown = () => {
-    setIsAvatarsOpen((prev) => !prev);
+  const handleToggleAvatars = () => {
+    setShowAvatars((prev) => !prev);
   };
 
   const isSubmitDisabled = !avatar || !name || !purpose;
@@ -94,22 +94,22 @@ export default function RobotForm({
           <div className="flex gap-2 items-center">
             <div
               className="rounded-full border dark:border-neutral-700 cursor-pointer"
-              onClick={handleToggleAvatarsDropdown}
+              onClick={handleToggleAvatars}
             >
               <Image src={avatar} alt="" width={80} height={80} />
             </div>
             <Button
               variant="secondary"
               size="small"
-              onClick={handleToggleAvatarsDropdown}
+              onClick={handleToggleAvatars}
             >
               Select avatar
             </Button>
           </div>
           <div className="relative overflow-hidden">
-            {isAvatarsOpen && (
-              <SelectAvatar
-                handleToggleAvatarsDropdown={handleToggleAvatarsDropdown}
+            {showAvatars && (
+              <RobotAvatars
+                handleToggleAvatars={handleToggleAvatars}
                 onChange={(newAvatar) => setAvatar(newAvatar)}
               />
             )}

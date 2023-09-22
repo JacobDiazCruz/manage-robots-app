@@ -2,16 +2,16 @@ import Image, { StaticImageData } from "next/image";
 import { useOutsideClick } from "../../../hooks/useOutsideClick";
 import { ROBOT_AVATARS } from "../../../utils/avatars";
 
-interface SelectAvatarProps {
-  handleToggleAvatarsDropdown: () => void;
+interface RobotAvatarsProps {
+  handleToggleAvatars: () => void;
   onChange: (_avatar: StaticImageData) => void;
 }
 
-export default function SelectAvatar({
-  handleToggleAvatarsDropdown,
+export default function RobotAvatars({
+  handleToggleAvatars,
   onChange,
-}: SelectAvatarProps) {
-  const avatarsDropdown = useOutsideClick(handleToggleAvatarsDropdown);
+}: RobotAvatarsProps) {
+  const avatarsDropdown = useOutsideClick(handleToggleAvatars);
 
   return (
     <div
@@ -25,7 +25,7 @@ export default function SelectAvatar({
             className="cursor-pointer"
             onClick={() => {
               onChange(avatar);
-              handleToggleAvatarsDropdown();
+              handleToggleAvatars();
             }}
           >
             <Image src={avatar} alt="" width={80} height={80} />

@@ -8,12 +8,12 @@ import useDeleteRobot from "../../../hooks/useDeleteRobot";
 import usePersistRobotsData from "../../../hooks/usePersistRobotsData";
 import { Robot, SubmitRobotFormParams } from "../../../types/robot";
 import Button from "../../ui/Button";
-import DeleteConfirmationModal from "./DeleteConfirmationModal";
-import EmptyList from "./EmptyList";
+import RobotDeleteModal from "./RobotDeleteModal";
+import RobotDetailsModal from "./RobotDetailsModal";
+import RobotEmptyList from "./RobotEmptyList";
 import RobotForm from "./RobotForm";
 import RobotItem from "./RobotItem";
-import UnauthScreen from "./UnauthScreen";
-import ViewDetailsModal from "./ViewDetailsModal";
+import RobotUnauthScreen from "./RobotUnauthScreen";
 
 export default function Robots() {
   const { currentUser } = useUser();
@@ -21,10 +21,8 @@ export default function Robots() {
   const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
   const [showRobotFormModal, setShowRobotFormModal] = useState<boolean>(false);
-  const [showDeleteConfirmation, setShowDeleteConfirmation] =
-    useState<boolean>(false);
-  const [showViewRobotDetails, setShowViewRobotDetails] =
-    useState<boolean>(false);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [showDetailsModal, setShowDetailsModal] = useState<boolean>(false);
 
   const [selectedRobotId, setSelectedRobotId] = useState<string>("");
   const [viewedRobotData, setViewedRobotData] = useState<Robot | null>(null);
@@ -89,9 +87,9 @@ export default function Robots() {
       <section className="list">
         <ul className="w-full">
           {!robots.length && !isLoadingRobots ? (
-            <EmptyList />
+            <RobotEmptyList />
           ) : (
-            !currentUser && !isLoadingRobots && <UnauthScreen />
+            !currentUser && !isLoadingRobots && <RobotUnauthScreen />
           )}
 
           {currentUser &&
@@ -102,12 +100,12 @@ export default function Robots() {
                 handleViewRobotDetails={(e) => {
                   e.stopPropagation();
                   setViewedRobotData(robot);
-                  setShowViewRobotDetails(true);
+                  setShowDetailsModal(true);
                 }}
                 handleDeleteRobot={(e) => {
                   e.stopPropagation();
                   setSelectedRobotId(robot.id);
-                  setShowDeleteConfirmation(true);
+                  setShowDeleteModal(true);
                 }}
                 handleEditRobot={(e) => {
                   e.stopPropagation();
@@ -131,23 +129,23 @@ export default function Robots() {
         />
       )}
 
-      {showDeleteConfirmation && (
-        <DeleteConfirmationModal
+      {showDeleteModal && (
+        <RobotDeleteModal
           onClose={() => {
-            setShowDeleteConfirmation(false);
+            setShowDeleteModal(false);
             setSelectedRobotId("");
           }}
           handleDeleteRobot={() => {
             handleDeleteRobot(selectedRobotId, setRobots);
-            setShowDeleteConfirmation(false);
+            setShowDeleteModal(false);
             setSelectedRobotId("");
           }}
         />
       )}
 
-      {showViewRobotDetails && (
-        <ViewDetailsModal
-          onClose={() => setShowViewRobotDetails(false)}
+      {showDetailsModal && (
+        <RobotDetailsModal
+          onClose={() => setShowDetailsModal(false)}
           robot={viewedRobotData as Robot}
         />
       )}
