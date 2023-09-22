@@ -4,7 +4,6 @@ import { ChangeEvent, KeyboardEvent, ReactElement, ReactNode } from "react";
 interface TextFieldProps {
   value?: string | number;
   type?: string;
-  inputRef?: any;
   startIcon?: ReactElement | ReactNode | null;
   placeholder?: string;
   disabled?: boolean;
@@ -24,7 +23,6 @@ const textfieldSize: Record<string, string> = {
 export default function TextField({
   value = "",
   type = "text",
-  inputRef = null,
   startIcon = null,
   disabled = false,
   placeholder = "",
@@ -43,7 +41,6 @@ export default function TextField({
       )}
       <input
         type={type}
-        ref={inputRef}
         className={`
           ${textfieldSize[size]}
           dark:bg-neutral-900 border dark:border-none rounded-md relative dark:text-white text-sm rounded-lg focus:gray-300 focus:gray-300 block w-full p-2.5
