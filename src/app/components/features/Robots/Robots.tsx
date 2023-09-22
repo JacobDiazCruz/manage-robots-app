@@ -49,8 +49,8 @@ export default function Robots() {
   };
 
   /**
-   * Update the values of the current edited robot from the robots list.
-   * Then empty the robot id and close the modal
+   * Update the values of the currently edited robot,
+   * then clear the selected robot ID, and close the modal.
    */
   const handleEditRobot = (data: Robot) => {
     setRobots((prev) => {

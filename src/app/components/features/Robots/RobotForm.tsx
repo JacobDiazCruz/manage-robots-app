@@ -37,6 +37,9 @@ export default function RobotForm({
   const isSubmitDisabled = !avatar || !name || !purpose;
   const formType = currentEditedRobotId ? "EDIT" : "ADD";
 
+  /**
+   * Set existing robot data if edit action is invoked.
+   */
   useEffect(() => {
     const editedRobot = robots.find(
       (robot) => robot.id === currentEditedRobotId
@@ -49,9 +52,12 @@ export default function RobotForm({
     }
   }, []);
 
+  /**
+   * This function is used for both adding a new robot
+   * and editing an existing one.
+   */
   const invokeHandleSubmitForm = () => {
     const isValid = handleValidateExistingName();
-
     if (!isValid) return false;
 
     handleSubmitForm({
@@ -66,7 +72,7 @@ export default function RobotForm({
   };
 
   const handleValidateExistingName = () => {
-    const robotFound = robots.find((robot) => robot.name === name);
+    const robotFound = robots?.find((robot) => robot.name === name);
     if (robotFound) {
       setSubmitError("Robot name already exist.");
       return false;
