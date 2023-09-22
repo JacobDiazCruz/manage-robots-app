@@ -10,13 +10,15 @@ import { Robot, SubmitRobotFormParams } from "../../../types/robot";
 import Button from "../../ui/Button";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import EmptyList from "./EmptyList";
+import LoginToAddRobots from "./LoginToAddRobots";
 import RobotForm from "./RobotForm";
 import RobotItem from "./RobotItem";
 import ViewDetailsModal from "./ViewDetailsModal";
 
 export default function Robots() {
-  const { handleDeleteRobot } = useDeleteRobot();
   const { currentUser } = useUser();
+  const { handleDeleteRobot } = useDeleteRobot();
+  const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
   const [showRobotFormModal, setShowRobotFormModal] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] =
@@ -26,8 +28,6 @@ export default function Robots() {
 
   const [selectedRobotId, setSelectedRobotId] = useState<string>("");
   const [viewedRobotData, setViewedRobotData] = useState<Robot | null>(null);
-
-  const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
   const handleToggleModal = () => {
     setShowRobotFormModal((prev) => !prev);
@@ -85,29 +85,34 @@ export default function Robots() {
 
       <section className="list">
         <ul className="w-full">
-          {!robots.length && !isLoadingRobots && <EmptyList />}
+          {!robots.length && !isLoadingRobots ? (
+            <EmptyList />
+          ) : (
+            !currentUser && !isLoadingRobots && <LoginToAddRobots />
+          )}
 
-          {robots.map((robot: Robot, index: number) => (
-            <RobotItem
-              key={index}
-              robot={robot}
-              handleViewRobotDetails={(e) => {
-                e.stopPropagation();
-                setViewedRobotData(robot);
-                setShowViewRobotDetails(true);
-              }}
-              handleDeleteRobot={(e) => {
-                e.stopPropagation();
-                setSelectedRobotId(robot.id);
-                setShowDeleteConfirmation(true);
-              }}
-              handleEditRobot={(e) => {
-                e.stopPropagation();
-                setSelectedRobotId(robot.id);
-                setShowRobotFormModal(true);
-              }}
-            />
-          ))}
+          {currentUser &&
+            robots?.map((robot: Robot, index: number) => (
+              <RobotItem
+                key={index}
+                robot={robot}
+                handleViewRobotDetails={(e) => {
+                  e.stopPropagation();
+                  setViewedRobotData(robot);
+                  setShowViewRobotDetails(true);
+                }}
+                handleDeleteRobot={(e) => {
+                  e.stopPropagation();
+                  setSelectedRobotId(robot.id);
+                  setShowDeleteConfirmation(true);
+                }}
+                handleEditRobot={(e) => {
+                  e.stopPropagation();
+                  setSelectedRobotId(robot.id);
+                  setShowRobotFormModal(true);
+                }}
+              />
+            ))}
         </ul>
       </section>
 

@@ -14,14 +14,27 @@ export const UserContext = createContext<UserProviderResponse>(
   null
 );
 
-export interface UserProviderResponse {
+interface UserProviderResponse {
   currentUser: User | null;
-  setCurrentUser: any;
+  handleEmptyCurrentUser: () => void;
+  handleAddCurrentUser: (user: User) => void;
 }
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const currentPersistedUser = localStorage.getItem("currentUser") as string;
+  const currentPersistedUser =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("currentUser")
+      : "";
+
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+
+  const handleAddCurrentUser = (user: User) => {
+    setCurrentUser(user);
+  };
+
+  const handleEmptyCurrentUser = () => {
+    setCurrentUser(null);
+  };
 
   useEffect(() => {
     if (currentPersistedUser) {
@@ -31,7 +44,8 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const value: UserProviderResponse = {
     currentUser,
-    setCurrentUser,
+    handleEmptyCurrentUser,
+    handleAddCurrentUser,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

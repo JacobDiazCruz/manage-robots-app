@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "./components/features/Navbar";
 import Robots from "./components/features/Robots";
 import { UserProvider } from "./store/User";

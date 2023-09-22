@@ -1,20 +1,18 @@
 import { useOutsideClick } from "@/src/app/hooks/useOutsideClick";
+import { useUser } from "@/src/app/store/User";
 
 interface UserDropdownProps {
   onClose: () => void;
-  emptyCurrentUser: () => void;
 }
 
-export default function UserDropdown({
-  onClose,
-  emptyCurrentUser,
-}: UserDropdownProps) {
+export default function UserDropdown({ onClose }: UserDropdownProps) {
   const userDropdownRef = useOutsideClick(onClose);
+  const { handleEmptyCurrentUser } = useUser();
 
   const handleLogout = () => {
+    handleEmptyCurrentUser();
     localStorage.removeItem("currentUser");
     onClose();
-    emptyCurrentUser();
   };
 
   return (

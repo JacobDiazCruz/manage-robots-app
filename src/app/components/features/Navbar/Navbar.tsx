@@ -13,7 +13,7 @@ import UserDropdown from "./UserDropdown";
 
 export default function Navbar() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
-  const { currentUser, setCurrentUser } = useUser();
+  const { currentUser } = useUser();
 
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
@@ -51,10 +51,7 @@ export default function Navbar() {
                 <RiArrowDropDownFill className="w-6 h-6 dark:text-neutral-50" />
               </button>
               {showUserDropdown && (
-                <UserDropdown
-                  onClose={() => setShowUserDropdown(false)}
-                  emptyCurrentUser={() => setCurrentUser(null)}
-                />
+                <UserDropdown onClose={() => setShowUserDropdown(false)} />
               )}
             </div>
           )}

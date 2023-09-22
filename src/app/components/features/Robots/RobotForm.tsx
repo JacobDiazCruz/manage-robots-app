@@ -28,6 +28,7 @@ export default function RobotForm({
   const [avatar, setAvatar] = useState<StaticImageData>(Charlie);
 
   const [isAvatarsOpen, setIsAvatarsOpen] = useState<boolean>(false);
+  const [submitError, setSubmitError] = useState<string>("");
 
   const handleToggleAvatarsDropdown = () => {
     setIsAvatarsOpen((prev) => !prev);
@@ -49,6 +50,10 @@ export default function RobotForm({
   }, []);
 
   const invokeHandleSubmitForm = () => {
+    const isValid = handleValidateExistingName();
+
+    if (!isValid) return false;
+
     handleSubmitForm({
       data: {
         id: uuidv1(),
@@ -60,8 +65,17 @@ export default function RobotForm({
     });
   };
 
+  const handleValidateExistingName = () => {
+    const robotFound = robots.find((robot) => robot.name === name);
+    if (robotFound) {
+      setSubmitError("Robot name already exist.");
+      return false;
+    }
+    return true;
+  };
+
   return (
-    <Modal onClose={onClose} className="w-[600px] h-[500px]">
+    <Modal onClose={onClose} className="w-[600px] h-[550px]">
       <ModalHeader>
         <h1 className="font-semibold dark:text-white">
           {formType === "ADD" ? "Add New Robot" : "Edit Robot"}
@@ -99,6 +113,7 @@ export default function RobotForm({
             onChange={(e) => setName(e.target.value)}
             className="mt-2"
           />
+          <p className="text-red-500 text-sm my-2">{submitError}</p>
         </section>
         <section className="mt-5">
           <label className="dark:text-white text-sm">

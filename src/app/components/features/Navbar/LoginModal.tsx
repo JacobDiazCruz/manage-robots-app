@@ -1,3 +1,4 @@
+import { useUser } from "@/src/app/store/User";
 import { User } from "@/src/app/types/user";
 import { useState } from "react";
 import Button from "../../ui/Button";
@@ -11,6 +12,7 @@ interface LoginModalProps {
 
 export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
   const users = JSON.parse(localStorage.getItem("users") as string);
+  const { handleAddCurrentUser } = useUser();
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -25,6 +27,7 @@ export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
 
     if (user) {
       localStorage.setItem("currentUser", JSON.stringify(user));
+      handleAddCurrentUser(user);
       onClose();
     }
     setIsLoginError(true);
