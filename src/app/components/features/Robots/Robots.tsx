@@ -10,9 +10,9 @@ import { Robot, SubmitRobotFormParams } from "../../../types/robot";
 import Button from "../../ui/Button";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import EmptyList from "./EmptyList";
-import LoginToAddRobots from "./LoginToAddRobots";
 import RobotForm from "./RobotForm";
 import RobotItem from "./RobotItem";
+import UnauthScreen from "./UnauthScreen";
 import ViewDetailsModal from "./ViewDetailsModal";
 
 export default function Robots() {
@@ -91,7 +91,7 @@ export default function Robots() {
           {!robots.length && !isLoadingRobots ? (
             <EmptyList />
           ) : (
-            !currentUser && !isLoadingRobots && <LoginToAddRobots />
+            !currentUser && !isLoadingRobots && <UnauthScreen />
           )}
 
           {currentUser &&
