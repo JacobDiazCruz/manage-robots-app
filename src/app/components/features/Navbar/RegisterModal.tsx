@@ -46,6 +46,7 @@ export default function RegisterModal({
       value: "",
     },
   ]);
+  const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
 
   const handleFieldUpdate = (fieldName: string, newValue: string) => {
     setFormFields((prev) => {
@@ -63,7 +64,21 @@ export default function RegisterModal({
     });
   };
 
+  /**
+   * Continue to register user if password and confirm password matched.
+   */
   const handleRegisterNow = () => {
+    const password = formFields.find((field) => field.name === "password")
+      ?.value;
+    const confirmPassword = formFields.find(
+      (field) => field.name === "confirmPassword"
+    )?.value;
+
+    if (password !== confirmPassword) {
+      setIsPasswordError(true);
+      return;
+    }
+
     const newUser = {} as User;
     formFields.forEach((field) => {
       if (field.name !== "confirmPassword") {
@@ -72,20 +87,23 @@ export default function RegisterModal({
       }
     });
     localStorage.setItem("users", JSON.stringify([newUser]));
+    openLogin();
   };
 
   return (
     <Modal onClose={onClose} className="w-[900px] h-[500px]">
       <div className="flex h-full">
-        <section className="w-1/2 bg-neutral-100 h-full relative">
+        <section className="w-1/2 bg-neutral-100 dark:bg-neutral-700 h-full relative">
           <div className="flex items-center justify-center h-full">
-            <h2 className="text-center font-semibold justify-center text-2xl">
+            <h2 className="text-center font-semibold dark:text-neutral-100 justify-center text-2xl">
               Welcome!
             </h2>
           </div>
         </section>
         <section className="w-1/2 p-7">
-          <h3 className="font-semibold text-xl">Register</h3>
+          <h3 className="font-semibold dark:text-neutral-100 text-xl">
+            Register
+          </h3>
           {formFields.map((field, index) => (
             <div key={index} className="my-5">
               <label className="text-neutral-500 dark:text-neutral-300 text-sm">
@@ -99,12 +117,16 @@ export default function RegisterModal({
             </div>
           ))}
           <div className="mt-5">
+            <p className="text-red-500 mb-2">
+              {isPasswordError &&
+                "Password and confirm password did not match."}
+            </p>
             <Button size="large" className="w-full" onClick={handleRegisterNow}>
               Register now
             </Button>
           </div>
           <div className="mt-5">
-            <p className="text-center text-neutral-600 text-sm">
+            <p className="text-center text-neutral-600 text-sm dark:text-neutral-200">
               Have an account already?{" "}
               <b onClick={openLogin} className="cursor-pointer">
                 Log in

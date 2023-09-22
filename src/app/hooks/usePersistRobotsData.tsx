@@ -11,8 +11,8 @@ export default function usePersistRobotsData() {
     );
     if (robotsFromLocalStorage) {
       setRobots(robotsFromLocalStorage);
-      setIsLoadingRobots(false);
     }
+    setIsLoadingRobots(false);
   }, []);
 
   useEffect(() => {

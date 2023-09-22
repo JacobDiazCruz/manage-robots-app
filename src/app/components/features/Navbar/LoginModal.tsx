@@ -33,15 +33,15 @@ export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
   return (
     <Modal onClose={onClose} className="w-[900px] h-[500px]">
       <div className="flex h-full">
-        <section className="w-1/2 bg-neutral-100 h-full relative">
+        <section className="w-1/2 bg-neutral-100 dark:bg-neutral-700 h-full relative">
           <div className="flex items-center justify-center h-full">
-            <h2 className="text-center font-semibold justify-center text-2xl">
+            <h2 className="text-center dark:text-neutral-100 font-semibold justify-center text-2xl">
               Welcome!
             </h2>
           </div>
         </section>
         <section className="w-1/2 p-7">
-          <h3 className="font-semibold text-xl">Login</h3>
+          <h3 className="font-semibold dark:text-neutral-100 text-xl">Login</h3>
           <div className="my-5">
             <label className="text-neutral-500 dark:text-neutral-300 text-sm">
               Username
@@ -70,7 +70,7 @@ export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
             </Button>
           </div>
           <div className="mt-5">
-            <p className="text-center text-neutral-600 text-sm">
+            <p className="text-center text-neutral-600 dark:text-neutral-200 text-sm">
               Don&apos;t have an account yet?{" "}
               <b onClick={openRegister} className="cursor-pointer">
                 Register now
