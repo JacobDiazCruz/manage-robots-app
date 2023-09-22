@@ -18,8 +18,10 @@ export default function ViewDetailsModal({
       </div>
       <ModalContent>
         <div className="py-5">
-          <h4 className="font-semibold text-lg text-white">{robot.name}</h4>
-          <p className="font-light text-md text-neutral-100 mt-1">
+          <h4 className="font-semibold text-lg dark:text-white">
+            {robot.name}
+          </h4>
+          <p className="font-light text-md dark:text-neutral-100 mt-1">
             {robot.purpose}
           </p>
         </div>
