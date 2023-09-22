@@ -3,17 +3,17 @@
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 
-import useDeleteRobot from "../../hooks/useDeleteRobot";
-import usePersistRobotsData from "../../hooks/usePersistRobotsData";
-import { Robot, SubmitRobotFormParams } from "../../types/robot";
-import Button from "../ui/Button";
+import useDeleteRobot from "../../../hooks/useDeleteRobot";
+import usePersistRobotsData from "../../../hooks/usePersistRobotsData";
+import { Robot, SubmitRobotFormParams } from "../../../types/robot";
+import Button from "../../ui/Button";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import EmptyList from "./EmptyList";
 import RobotForm from "./RobotForm";
 import RobotItem from "./RobotItem";
 import ViewDetailsModal from "./ViewDetailsModal";
 
-export default function RobotsList() {
+export default function Robots() {
   const { handleDeleteRobot } = useDeleteRobot();
 
   const [showRobotFormModal, setShowRobotFormModal] = useState<boolean>(false);

@@ -1,13 +1,13 @@
 import Image, { StaticImageData } from "next/image";
 import { v1 as uuidv1 } from "uuid";
-import Charlie from "../../../../public/charlie.png";
+import Charlie from "../../../../../public/charlie.png";
 
 import { useEffect, useState } from "react";
-import { Robot, SubmitRobotFormParams } from "../../types/robot";
-import Button from "../ui/Button";
-import Modal, { ModalContent, ModalHeader } from "../ui/Modal";
-import TextareaField from "../ui/TextareaField";
-import TextField from "../ui/TextField";
+import { Robot, SubmitRobotFormParams } from "../../../types/robot";
+import Button from "../../ui/Button";
+import Modal, { ModalContent, ModalHeader } from "../../ui/Modal";
+import TextareaField from "../../ui/TextareaField";
+import TextField from "../../ui/TextField";
 import SelectAvatar from "./SelectAvatar";
 
 interface RobotFormProps {

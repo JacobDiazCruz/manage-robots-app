@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from "next/image";
-import { useOutsideClick } from "../../hooks/useOutsideClick";
-import { ROBOT_AVATARS } from "../../utils/avatars";
+import { useOutsideClick } from "../../../hooks/useOutsideClick";
+import { ROBOT_AVATARS } from "../../../utils/avatars";
 
 interface SelectAvatarProps {
   handleToggleAvatarsDropdown: () => void;

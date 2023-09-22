@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "../ui/Button";
-import Modal from "../ui/Modal";
-import TextField from "../ui/TextField";
+import Button from "../../ui/Button";
+import Modal from "../../ui/Modal";
+import TextField from "../../ui/TextField";
 
 interface LoginModalProps {
   onClose: () => void;

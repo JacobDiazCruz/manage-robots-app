@@ -1,9 +1,9 @@
 import Image from "next/image";
-import IconButton from "../ui/IconButton";
+import IconButton from "../../ui/IconButton";
 
 import { BiTrash } from "react-icons/bi";
 import { FiEdit2 } from "react-icons/fi";
-import { Robot } from "../../types/robot";
+import { Robot } from "../../../types/robot";
 
 interface RobotItemProps {
   robot: Robot;

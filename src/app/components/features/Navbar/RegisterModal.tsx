@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { User } from "../../types/user";
-import Button from "../ui/Button";
-import Modal from "../ui/Modal";
-import TextField from "../ui/TextField";
+import { User } from "../../../types/user";
+import Button from "../../ui/Button";
+import Modal from "../../ui/Modal";
+import TextField from "../../ui/TextField";
 
 interface RegisterModalProps {
   onClose: () => void;

@@ -1,5 +1,5 @@
-import Button from "../ui/Button";
-import Modal, { ModalHeader } from "../ui/Modal";
+import Button from "../../ui/Button";
+import Modal, { ModalHeader } from "../../ui/Modal";
 
 interface DeleteConfirmationModalProps {
   onClose: () => void;
