@@ -5,7 +5,7 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import TextField from "../../ui/TextField";
 
-interface RegisterModalProps {
+interface NavbarRegisterModalProps {
   onClose: () => void;
   openLogin: () => void;
 }
@@ -17,10 +17,10 @@ interface FormField {
   value: string;
 }
 
-export default function RegisterModal({
+export default function NavbarRegisterModal({
   onClose,
   openLogin,
-}: RegisterModalProps) {
+}: NavbarRegisterModalProps) {
   /**
    * Assuming that we will have additional textfields in the future,
    * it would be easier to scale if we store them in a configurable state rather than
@@ -46,7 +46,7 @@ export default function RegisterModal({
       value: "",
     },
   ]);
-  const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const handleFieldUpdate = (fieldName: string, newValue: string) => {
     setFormFields((prev) => {
@@ -64,19 +64,11 @@ export default function RegisterModal({
   };
 
   /**
-   * Continue to register user if password and confirm password matched.
+   * Continue to register user if the form is valid.
    */
   const handleRegisterNow = () => {
-    const password = formFields.find((field) => field.name === "password")
-      ?.value;
-    const confirmPassword = formFields.find(
-      (field) => field.name === "confirmPassword"
-    )?.value;
-
-    if (password !== confirmPassword) {
-      setIsPasswordError(true);
-      return;
-    }
+    const isValid = handleValidation();
+    if (!isValid) return false;
 
     const newUser = {} as User;
     formFields.forEach((field) => {
@@ -87,6 +79,28 @@ export default function RegisterModal({
     });
     localStorage.setItem("users", JSON.stringify([newUser]));
     openLogin();
+  };
+
+  const handleValidation = () => {
+    const username = formFields.find((field) => field.name === "username")
+      ?.value;
+    const password = formFields.find((field) => field.name === "password")
+      ?.value;
+    const confirmPassword = formFields.find(
+      (field) => field.name === "confirmPassword"
+    )?.value;
+
+    if (!username || !password || !confirmPassword) {
+      setErrorMessage("All fields are required.");
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage("Password and confirm password did not match.");
+      return false;
+    }
+
+    return true;
   };
 
   return (
@@ -116,10 +130,7 @@ export default function RegisterModal({
             </div>
           ))}
           <div className="mt-5">
-            <p className="text-red-500 mb-2">
-              {isPasswordError &&
-                "Password and confirm password did not match."}
-            </p>
+            <p className="text-red-500 mb-2 text-sm">{errorMessage}</p>
             <Button size="large" className="w-full" onClick={handleRegisterNow}>
               Register now
             </Button>

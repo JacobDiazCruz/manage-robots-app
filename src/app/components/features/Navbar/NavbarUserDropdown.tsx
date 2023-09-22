@@ -1,11 +1,13 @@
 import { useOutsideClick } from "@/src/app/hooks/useOutsideClick";
 import { useUser } from "@/src/app/store/User";
 
-interface UserDropdownProps {
+interface NavbarUserDropdownProps {
   onClose: () => void;
 }
 
-export default function UserDropdown({ onClose }: UserDropdownProps) {
+export default function NavbarUserDropdown({
+  onClose,
+}: NavbarUserDropdownProps) {
   const userDropdownRef = useOutsideClick(onClose);
   const { handleEmptyCurrentUser } = useUser();
 

@@ -7,9 +7,9 @@ import { RiArrowDropDownFill } from "react-icons/ri";
 import useDarkTheme from "../../../hooks/useDarkTheme";
 import Button from "../../ui/Button";
 import Switch from "../../ui/Switch";
-import LoginModal from "./LoginModal";
-import RegisterModal from "./RegisterModal";
-import UserDropdown from "./UserDropdown";
+import NavbarLoginModal from "./NavbarLoginModal";
+import NavbarRegisterModal from "./NavbarRegisterModal";
+import UserDropdown from "./NavbarUserDropdown";
 
 export default function Navbar() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
@@ -62,7 +62,7 @@ export default function Navbar() {
       </nav>
 
       {showLoginModal && (
-        <LoginModal
+        <NavbarLoginModal
           onClose={() => setShowLoginModal(false)}
           openRegister={() => {
             setShowLoginModal(false);
@@ -72,7 +72,7 @@ export default function Navbar() {
       )}
 
       {showRegisterModal && (
-        <RegisterModal
+        <NavbarRegisterModal
           onClose={() => setShowRegisterModal(false)}
           openLogin={() => {
             setShowRegisterModal(false);

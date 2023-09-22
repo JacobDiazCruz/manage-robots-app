@@ -5,12 +5,15 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import TextField from "../../ui/TextField";
 
-interface LoginModalProps {
+interface NavbarLoginModalProps {
   onClose: () => void;
   openRegister: () => void;
 }
 
-export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
+export default function NavbarLoginModal({
+  onClose,
+  openRegister,
+}: NavbarLoginModalProps) {
   const users = JSON.parse(localStorage.getItem("users") as string);
   const { handleAddCurrentUser } = useUser();
 
