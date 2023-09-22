@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v1 as uuidv1 } from "uuid";
 import { User } from "../../../types/user";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
@@ -62,10 +63,11 @@ export default function RegisterModal({ onClose }: RegisterModalProps) {
     const newUser = {} as User;
     formFields.forEach((field) => {
       if (field.name !== "confirmPassword") {
+        newUser["id"] = uuidv1();
         newUser[field.name] = field.value;
       }
     });
-    localStorage.setItem("users", JSON.stringify(newUser));
+    localStorage.setItem("users", JSON.stringify([newUser]));
   };
 
   return (

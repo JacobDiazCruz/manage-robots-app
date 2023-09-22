@@ -4,7 +4,6 @@ import IconButton from "../../ui/IconButton";
 import { BiTrash } from "react-icons/bi";
 import { FiEdit2 } from "react-icons/fi";
 import { Robot } from "../../../types/robot";
-
 interface RobotItemProps {
   robot: Robot;
   handleViewRobotDetails: (e: React.MouseEvent<HTMLLIElement>) => void;

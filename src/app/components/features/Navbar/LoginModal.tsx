@@ -1,3 +1,4 @@
+import { User } from "@/src/app/types/user";
 import { useState } from "react";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
@@ -8,11 +9,24 @@ interface LoginModalProps {
 }
 
 export default function LoginModal({ onClose }: LoginModalProps) {
+  const users = JSON.parse(localStorage.getItem("users") as string);
+
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoginError, setIsLoginError] = useState<boolean>(false);
 
-  const handleLogin = () => {
-    alert(1);
+  const handleLoginNow = () => {
+    const user = users?.find((user: User) => {
+      if (user.username === username && user.password === password) {
+        return user;
+      }
+    });
+
+    if (user) {
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      onClose();
+    }
+    setIsLoginError(true);
   };
 
   return (
@@ -43,10 +57,14 @@ export default function LoginModal({ onClose }: LoginModalProps) {
             <TextField
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              type="password"
             />
           </div>
           <div className="mt-5">
-            <Button size="large" className="w-full" onClick={handleLogin}>
+            <p className="text-red-500 mb-2">
+              {isLoginError && "Invalid username or password."}
+            </p>
+            <Button size="large" className="w-full" onClick={handleLoginNow}>
               Login now
             </Button>
           </div>

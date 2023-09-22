@@ -9,8 +9,10 @@ export default function usePersistRobotsData() {
     const robotsFromLocalStorage = JSON.parse(
       localStorage.getItem("robots") as string
     );
-    setRobots(robotsFromLocalStorage);
-    setIsLoadingRobots(false);
+    if (robotsFromLocalStorage) {
+      setRobots(robotsFromLocalStorage);
+      setIsLoadingRobots(false);
+    }
   }, []);
 
   useEffect(() => {
