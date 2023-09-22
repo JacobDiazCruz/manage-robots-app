@@ -4,6 +4,7 @@ import { User } from "../../../types/user";
 import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import TextField from "../../ui/TextField";
+import NavbarWelcomeSection from "./NavbarWelcomeSection";
 
 interface NavbarRegisterModalProps {
   onClose: () => void;
@@ -106,13 +107,7 @@ export default function NavbarRegisterModal({
   return (
     <Modal onClose={onClose} className="w-11/12 md:w-[900px] h-[500px]">
       <div className="flex h-full">
-        <section className="hidden md:block w-1/2 bg-neutral-100 dark:bg-neutral-700 h-full relative">
-          <div className="flex items-center justify-center h-full">
-            <h2 className="text-center font-semibold dark:text-neutral-100 justify-center text-2xl">
-              Welcome!
-            </h2>
-          </div>
-        </section>
+        <NavbarWelcomeSection />
         <fieldset className="w-full md:w-1/2 p-7">
           <h3 className="font-semibold dark:text-neutral-100 text-xl">
             Register
