@@ -50,8 +50,7 @@ export default function RegisterModal({
 
   const handleFieldUpdate = (fieldName: string, newValue: string) => {
     setFormFields((prev) => {
-      const formFieldsCopy = [...prev];
-      const newFields = formFieldsCopy.map((field) => {
+      const newFields = prev.map((field) => {
         if (field.name === fieldName) {
           return {
             ...field,

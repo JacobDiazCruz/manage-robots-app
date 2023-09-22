@@ -29,10 +29,6 @@ export default function Robots() {
   const [selectedRobotId, setSelectedRobotId] = useState<string>("");
   const [viewedRobotData, setViewedRobotData] = useState<Robot | null>(null);
 
-  const handleToggleModal = () => {
-    setShowRobotFormModal((prev) => !prev);
-  };
-
   const handleSubmitForm = ({ data, formType }: SubmitRobotFormParams) => {
     if (formType === "ADD") {
       handleAddRobot(data);
@@ -42,9 +38,8 @@ export default function Robots() {
 
   const handleAddRobot = (data: Robot) => {
     setRobots((prev) => {
-      const robotsCopy = [...prev];
-      robotsCopy.push(data);
-      return robotsCopy;
+      prev.push(data);
+      return prev;
     });
   };
 
@@ -54,8 +49,7 @@ export default function Robots() {
    */
   const handleEditRobot = (data: Robot) => {
     setRobots((prev) => {
-      const robotsCopy = [...prev];
-      const newRobotsCopy = robotsCopy.map((robot) => {
+      const newRobots = prev.map((robot) => {
         if (robot.id === selectedRobotId) {
           return {
             ...robot,
@@ -63,23 +57,30 @@ export default function Robots() {
             name: data.name,
             purpose: data.purpose,
           };
+        } else {
+          return robot;
         }
-        return robot;
       });
-      return newRobotsCopy;
+      return newRobots;
     });
     setSelectedRobotId("");
-    handleToggleModal();
+    setShowRobotFormModal(false);
   };
 
   return (
     <div className="pt-10">
       <header className="flex justify-between items-center mb-5">
         <h1 className="font-semibold text-xl dark:text-white">
-          Robots <span className="font-light">({robots?.length})</span>
+          Robots
+          {currentUser && (
+            <span className="font-light">({robots?.length})</span>
+          )}
         </h1>
         {currentUser && (
-          <Button onClick={handleToggleModal} startIcon={<AiOutlinePlus />}>
+          <Button
+            onClick={() => setShowRobotFormModal(true)}
+            startIcon={<AiOutlinePlus />}
+          >
             Add new robot
           </Button>
         )}
@@ -121,7 +122,7 @@ export default function Robots() {
       {showRobotFormModal && (
         <RobotForm
           onClose={() => {
-            handleToggleModal();
+            setShowRobotFormModal(false);
             setSelectedRobotId("");
           }}
           handleSubmitForm={handleSubmitForm}
@@ -132,7 +133,10 @@ export default function Robots() {
 
       {showDeleteConfirmation && (
         <DeleteConfirmationModal
-          onClose={() => setShowDeleteConfirmation(false)}
+          onClose={() => {
+            setShowDeleteConfirmation(false);
+            setSelectedRobotId("");
+          }}
           handleDeleteRobot={() => {
             handleDeleteRobot(selectedRobotId, setRobots);
             setShowDeleteConfirmation(false);

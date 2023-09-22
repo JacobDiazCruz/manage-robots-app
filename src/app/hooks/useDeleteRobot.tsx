@@ -7,10 +7,7 @@ export default function useDeleteRobot() {
     setRobots: Dispatch<SetStateAction<Robot[]>>
   ) => {
     setRobots((prev) => {
-      const robotsCopy = [...prev];
-      const filteredRobots = robotsCopy.filter(
-        (robotCopy) => robotCopy.id !== robotId
-      );
+      const filteredRobots = prev.filter((robot) => robot.id !== robotId);
       localStorage.setItem("robots", JSON.stringify(filteredRobots));
       return filteredRobots;
     });
