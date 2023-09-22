@@ -13,7 +13,9 @@ export default function DeleteConfirmationModal({
   return (
     <Modal onClose={onClose}>
       <ModalHeader>
-        <p>Are you sure you want to delete this robot?</p>
+        <p className="dark:text-white">
+          Are you sure you want to delete this robot?
+        </p>
         <div className="flex justify-between mt-5">
           <div className="flex gap-2 ml-auto">
             <Button variant="secondary">No</Button>

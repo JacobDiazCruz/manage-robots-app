@@ -7,17 +7,22 @@ import { Robot } from "../../types/robot";
 
 interface RobotItemProps {
   robot: Robot;
-  handleDeleteRobot: () => void;
-  handleEditRobot: () => void;
+  handleViewRobotDetails: (e: React.MouseEvent<HTMLLIElement>) => void;
+  handleDeleteRobot: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleEditRobot: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function RobotItem({
   robot,
+  handleViewRobotDetails,
   handleDeleteRobot,
   handleEditRobot,
 }: RobotItemProps) {
   return (
-    <li className="w-full border bg-white dark:border-neutral-700 dark:bg-neutral-800 rounded-xl p-2 my-3">
+    <li
+      onClick={handleViewRobotDetails}
+      className="w-full border bg-white dark:border-neutral-700 dark:bg-neutral-800 rounded-xl p-2 my-3 cursor-pointer"
+    >
       <div className="flex gap-2 items-center">
         <Image src={robot.avatar} alt="avatar" width={80} height={80} />
         <div className="w-1/2">

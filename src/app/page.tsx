@@ -7,6 +7,7 @@ import DeleteConfirmationModal from "./components/features/DeleteConfirmationMod
 import EmptyList from "./components/features/EmptyList";
 import RobotForm from "./components/features/RobotForm";
 import RobotItem from "./components/features/RobotItem";
+import ViewDetailsModal from "./components/features/ViewDetailsModal";
 import Button from "./components/ui/Button";
 import Switch from "./components/ui/Switch";
 import useDarkTheme from "./hooks/useDarkTheme";
@@ -21,7 +22,11 @@ export default function Homepage() {
   const [showRobotFormModal, setShowRobotFormModal] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] =
     useState<boolean>(false);
+  const [showViewRobotDetails, setShowViewRobotDetails] =
+    useState<boolean>(false);
+
   const [selectedRobotId, setSelectedRobotId] = useState<string>("");
+  const [viewedRobotData, setViewedRobotData] = useState<Robot | null>(null);
 
   const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
@@ -95,11 +100,18 @@ export default function Homepage() {
               <RobotItem
                 key={index}
                 robot={robot}
-                handleDeleteRobot={() => {
+                handleViewRobotDetails={(e) => {
+                  e.stopPropagation();
+                  setViewedRobotData(robot);
+                  setShowViewRobotDetails(true);
+                }}
+                handleDeleteRobot={(e) => {
+                  e.stopPropagation();
                   setSelectedRobotId(robot.id);
                   setShowDeleteConfirmation(true);
                 }}
-                handleEditRobot={() => {
+                handleEditRobot={(e) => {
+                  e.stopPropagation();
                   setSelectedRobotId(robot.id);
                   setShowRobotFormModal(true);
                 }}
@@ -128,6 +140,13 @@ export default function Homepage() {
             handleDeleteRobot(selectedRobotId, setRobots);
             setShowDeleteConfirmation(false);
           }}
+        />
+      )}
+
+      {showViewRobotDetails && (
+        <ViewDetailsModal
+          onClose={() => setShowViewRobotDetails(false)}
+          robot={viewedRobotData as Robot}
         />
       )}
     </main>

@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 
 interface IconButtonProps {
   className?: string;
-  onClick?: (_e?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   noPadding?: boolean;
   children: ReactNode;
 }
