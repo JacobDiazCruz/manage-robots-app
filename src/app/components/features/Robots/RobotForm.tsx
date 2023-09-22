@@ -74,14 +74,14 @@ export default function RobotForm({
   const handleValidateExistingName = () => {
     const robotFound = robots?.find((robot) => robot.name === name);
     if (robotFound) {
-      setSubmitError("Robot name already exist.");
+      setSubmitError("Name already exists.");
       return false;
     }
     return true;
   };
 
   return (
-    <Modal onClose={onClose} className="w-[600px] h-[550px]">
+    <Modal onClose={onClose} className="w-11/12 md:w-[600px] h-[550px]">
       <ModalHeader>
         <h1 className="font-semibold dark:text-white">
           {formType === "ADD" ? "Add New Robot" : "Edit Robot"}

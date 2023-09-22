@@ -34,16 +34,16 @@ export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
   };
 
   return (
-    <Modal onClose={onClose} className="w-[900px] h-[500px]">
+    <Modal onClose={onClose} className="w-11/12 md:w-[900px] h-[500px]">
       <div className="flex h-full">
-        <section className="w-1/2 bg-neutral-100 dark:bg-neutral-700 h-full relative">
+        <section className="hidden md:block w-1/2 bg-neutral-100 dark:bg-neutral-700 h-full relative">
           <div className="flex items-center justify-center h-full">
             <h2 className="text-center dark:text-neutral-100 font-semibold justify-center text-2xl">
               Welcome!
             </h2>
           </div>
         </section>
-        <section className="w-1/2 p-7">
+        <section className="w-full md:w-1/2 p-7">
           <h3 className="font-semibold dark:text-neutral-100 text-xl">Login</h3>
           <div className="my-5">
             <label className="text-neutral-500 dark:text-neutral-300 text-sm">
