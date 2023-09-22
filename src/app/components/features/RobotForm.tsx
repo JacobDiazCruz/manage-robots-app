@@ -34,6 +34,7 @@ export default function RobotForm({
   };
 
   const isSubmitDisabled = !avatar || !name || !purpose;
+  const formType = currentEditedRobotId ? "EDIT" : "ADD";
 
   useEffect(() => {
     const editedRobot = robots.find(
@@ -55,14 +56,16 @@ export default function RobotForm({
         name,
         purpose,
       },
-      submitType: currentEditedRobotId ? "EDIT" : "ADD",
+      formType,
     });
   };
 
   return (
     <Modal onClose={onClose} className="w-[600px] h-[500px]">
       <ModalHeader>
-        <h1 className="font-semibold dark:text-white">Add New Robot</h1>
+        <h1 className="font-semibold dark:text-white">
+          {formType === "ADD" ? "Add New Robot" : "Edit Robot"}
+        </h1>
       </ModalHeader>
       <ModalContent>
         <section>

@@ -29,8 +29,8 @@ export default function Homepage() {
     setShowRobotFormModal((prev) => !prev);
   };
 
-  const handleSubmitForm = ({ data, submitType }: SubmitRobotFormParams) => {
-    if (submitType === "ADD") {
+  const handleSubmitForm = ({ data, formType }: SubmitRobotFormParams) => {
+    if (formType === "ADD") {
       handleAddRobot(data);
     }
     handleEditRobot(data);

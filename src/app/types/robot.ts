@@ -9,5 +9,5 @@ export type Robot = {
 
 export type SubmitRobotFormParams = {
   data: Robot;
-  submitType: "ADD" | "EDIT";
+  formType: "ADD" | "EDIT";
 };
