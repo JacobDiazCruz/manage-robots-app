@@ -90,61 +90,63 @@ export default function RobotForm({
         </h1>
       </ModalHeader>
       <ModalContent>
-        <section>
-          <div className="flex gap-2 items-center">
-            <div
-              className="rounded-full border dark:border-neutral-700 cursor-pointer"
-              onClick={handleToggleAvatars}
-            >
-              <Image src={avatar} alt="" width={80} height={80} />
+        <fieldset>
+          <div>
+            <div className="flex gap-2 items-center">
+              <div
+                className="rounded-full border dark:border-neutral-700 cursor-pointer"
+                onClick={handleToggleAvatars}
+              >
+                <Image src={avatar} alt="" width={80} height={80} />
+              </div>
+              <Button
+                variant="secondary"
+                size="small"
+                onClick={handleToggleAvatars}
+              >
+                Select avatar
+              </Button>
             </div>
+            <div className="relative overflow-hidden">
+              {showAvatars && (
+                <RobotAvatars
+                  handleToggleAvatars={handleToggleAvatars}
+                  onChange={(newAvatar) => setAvatar(newAvatar)}
+                />
+              )}
+            </div>
+          </div>
+          <div className="mt-5">
+            <label className="dark:text-white text-sm">
+              Name<span className="text-red-500">*</span>
+            </label>
+            <TextField
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="mt-2"
+            />
+            <p className="text-red-500 text-sm my-2">{submitError}</p>
+          </div>
+          <div className="mt-5">
+            <label className="dark:text-white text-sm">
+              Purpose<span className="text-red-500">*</span>
+            </label>
+            <TextareaField
+              value={purpose}
+              className="mt-2"
+              onChange={(e) => setPurpose(e.target.value)}
+            />
+          </div>
+          <div className="flex py-5">
             <Button
-              variant="secondary"
-              size="small"
-              onClick={handleToggleAvatars}
+              onClick={invokeHandleSubmitForm}
+              className="ml-auto"
+              disabled={isSubmitDisabled}
             >
-              Select avatar
+              Submit
             </Button>
           </div>
-          <div className="relative overflow-hidden">
-            {showAvatars && (
-              <RobotAvatars
-                handleToggleAvatars={handleToggleAvatars}
-                onChange={(newAvatar) => setAvatar(newAvatar)}
-              />
-            )}
-          </div>
-        </section>
-        <section className="mt-5">
-          <label className="dark:text-white text-sm">
-            Name<span className="text-red-500">*</span>
-          </label>
-          <TextField
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="mt-2"
-          />
-          <p className="text-red-500 text-sm my-2">{submitError}</p>
-        </section>
-        <section className="mt-5">
-          <label className="dark:text-white text-sm">
-            Purpose<span className="text-red-500">*</span>
-          </label>
-          <TextareaField
-            value={purpose}
-            className="mt-2"
-            onChange={(e) => setPurpose(e.target.value)}
-          />
-        </section>
-        <section className="flex py-5">
-          <Button
-            onClick={invokeHandleSubmitForm}
-            className="ml-auto"
-            disabled={isSubmitDisabled}
-          >
-            Submit
-          </Button>
-        </section>
+        </fieldset>
       </ModalContent>
     </Modal>
   );

@@ -113,7 +113,7 @@ export default function NavbarRegisterModal({
             </h2>
           </div>
         </section>
-        <section className="w-full md:w-1/2 p-7">
+        <fieldset className="w-full md:w-1/2 p-7">
           <h3 className="font-semibold dark:text-neutral-100 text-xl">
             Register
           </h3>
@@ -143,7 +143,7 @@ export default function NavbarRegisterModal({
               </b>
             </p>
           </div>
-        </section>
+        </fieldset>
       </div>
     </Modal>
   );

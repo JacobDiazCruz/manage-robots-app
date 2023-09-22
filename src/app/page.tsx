@@ -10,12 +10,12 @@ export default function Homepage() {
       id="homepage"
       className="bg-neutral-50 dark:bg-neutral-900 min-h-[100vh]"
     >
-      <figure className="w-full md:w-[600px] px-4 md:px-0  mx-auto pt-7">
+      <div className="w-full md:w-[600px] px-4 md:px-0  mx-auto pt-7">
         <UserProvider>
           <Navbar />
           <Robots />
         </UserProvider>
-      </figure>
+      </div>
     </main>
   );
 }

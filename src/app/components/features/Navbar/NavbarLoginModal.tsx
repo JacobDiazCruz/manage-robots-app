@@ -46,7 +46,7 @@ export default function NavbarLoginModal({
             </h2>
           </div>
         </section>
-        <section className="w-full md:w-1/2 p-7">
+        <fieldset className="w-full md:w-1/2 p-7">
           <h3 className="font-semibold dark:text-neutral-100 text-xl">Login</h3>
           <div className="my-5">
             <label className="text-neutral-500 dark:text-neutral-300 text-sm">
@@ -83,7 +83,7 @@ export default function NavbarLoginModal({
               </b>
             </p>
           </div>
-        </section>
+        </fieldset>
       </div>
     </Modal>
   );
