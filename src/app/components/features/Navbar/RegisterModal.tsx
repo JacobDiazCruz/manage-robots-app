@@ -7,6 +7,7 @@ import TextField from "../../ui/TextField";
 
 interface RegisterModalProps {
   onClose: () => void;
+  openLogin: () => void;
 }
 
 interface FormField {
@@ -16,7 +17,10 @@ interface FormField {
   value: string;
 }
 
-export default function RegisterModal({ onClose }: RegisterModalProps) {
+export default function RegisterModal({
+  onClose,
+  openLogin,
+}: RegisterModalProps) {
   /**
    * Assuming that we will have additional textfields in the future,
    * it would be easier to scale if we store them in a configurable state rather than
@@ -84,7 +88,7 @@ export default function RegisterModal({ onClose }: RegisterModalProps) {
           <h3 className="font-semibold text-xl">Register</h3>
           {formFields.map((field, index) => (
             <div key={index} className="my-5">
-              <label className="text-neutral-500 dark:text-neutral-300">
+              <label className="text-neutral-500 dark:text-neutral-300 text-sm">
                 {field.label}
               </label>
               <TextField
@@ -101,7 +105,10 @@ export default function RegisterModal({ onClose }: RegisterModalProps) {
           </div>
           <div className="mt-5">
             <p className="text-center text-neutral-600 text-sm">
-              Have an account already? <b>Log in</b>
+              Have an account already?{" "}
+              <b onClick={openLogin} className="cursor-pointer">
+                Log in
+              </b>
             </p>
           </div>
         </section>

@@ -6,9 +6,10 @@ import TextField from "../../ui/TextField";
 
 interface LoginModalProps {
   onClose: () => void;
+  openRegister: () => void;
 }
 
-export default function LoginModal({ onClose }: LoginModalProps) {
+export default function LoginModal({ onClose, openRegister }: LoginModalProps) {
   const users = JSON.parse(localStorage.getItem("users") as string);
 
   const [username, setUsername] = useState<string>("");
@@ -42,7 +43,7 @@ export default function LoginModal({ onClose }: LoginModalProps) {
         <section className="w-1/2 p-7">
           <h3 className="font-semibold text-xl">Login</h3>
           <div className="my-5">
-            <label className="text-neutral-500 dark:text-neutral-300">
+            <label className="text-neutral-500 dark:text-neutral-300 text-sm">
               Username
             </label>
             <TextField
@@ -51,7 +52,7 @@ export default function LoginModal({ onClose }: LoginModalProps) {
             />
           </div>
           <div className="my-5">
-            <label className="text-neutral-500 dark:text-neutral-300">
+            <label className="text-neutral-500 dark:text-neutral-300 text-sm">
               Password
             </label>
             <TextField
@@ -70,7 +71,10 @@ export default function LoginModal({ onClose }: LoginModalProps) {
           </div>
           <div className="mt-5">
             <p className="text-center text-neutral-600 text-sm">
-              Don&apos;t have an account yet? <b>Register</b>
+              Don&apos;t have an account yet?{" "}
+              <b onClick={openRegister} className="cursor-pointer">
+                Register now
+              </b>
             </p>
           </div>
         </section>
