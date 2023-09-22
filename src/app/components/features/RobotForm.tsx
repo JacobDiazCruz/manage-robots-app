@@ -2,22 +2,27 @@ import Image, { StaticImageData } from "next/image";
 import { v1 as uuidv1 } from "uuid";
 import Charlie from "../../../../public/charlie.png";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Robot } from "../../types/robot";
 import Button from "../ui/Button";
 import Modal, { ModalContent, ModalHeader } from "../ui/Modal";
 import TextareaField from "../ui/TextareaField";
 import TextField from "../ui/TextField";
 import SelectAvatar from "./SelectAvatar";
-interface AddNewRobotFormProps {
+
+interface RobotFormProps {
   onClose: () => void;
-  handleSubmitForm: (_robot: Robot) => void;
+  handleSubmitForm: ({}) => void;
+  robots: Robot[];
+  currentEditedRobotId: string;
 }
 
-export default function AddNewRobotForm({
+export default function RobotForm({
   onClose,
   handleSubmitForm,
-}: AddNewRobotFormProps) {
+  robots,
+  currentEditedRobotId,
+}: RobotFormProps) {
   const [name, setName] = useState<string>("");
   const [purpose, setPurpose] = useState<string>("");
   const [avatar, setAvatar] = useState<StaticImageData>(Charlie);
@@ -29,6 +34,30 @@ export default function AddNewRobotForm({
   };
 
   const isSubmitDisabled = !avatar || !name || !purpose;
+
+  useEffect(() => {
+    const editedRobot = robots.find(
+      (robot) => robot.id === currentEditedRobotId
+    ) as Robot;
+
+    if (editedRobot) {
+      setName(editedRobot?.name);
+      setPurpose(editedRobot?.purpose);
+      setAvatar(editedRobot?.avatar);
+    }
+  }, []);
+
+  const invokeHandleSubmitForm = () => {
+    handleSubmitForm({
+      data: {
+        id: uuidv1(),
+        avatar,
+        name,
+        purpose,
+      },
+      submitType: currentEditedRobotId ? "EDIT" : "ADD",
+    });
+  };
 
   return (
     <Modal onClose={onClose} className="w-[600px] h-[500px]">
@@ -80,9 +109,7 @@ export default function AddNewRobotForm({
         </section>
         <section className="flex py-5">
           <Button
-            onClick={() => {
-              handleSubmitForm({ id: uuidv1(), avatar, name, purpose });
-            }}
+            onClick={invokeHandleSubmitForm}
             className="ml-auto"
             disabled={isSubmitDisabled}
           >

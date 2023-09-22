@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 
-import AddNewRobotForm from "./components/features/AddNewRobotForm";
 import EmptyList from "./components/features/EmptyList";
+import RobotForm from "./components/features/RobotForm";
 import RobotItem from "./components/features/RobotItem";
 import Button from "./components/ui/Button";
 import Switch from "./components/ui/Switch";
@@ -16,6 +16,7 @@ export default function Homepage() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentEditedRobotId, setCurrentEditedRobotId] = useState<string>("");
 
   const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
@@ -23,12 +24,30 @@ export default function Homepage() {
     setIsModalOpen((prev) => !prev);
   };
 
-  const handleSubmitForm = (robot: Robot) => {
+  const handleSubmitForm = ({ data, submitType }: any) => {
+    if (submitType === "ADD") {
+      setRobots((prev) => {
+        const robotsCopy = [...prev];
+        robotsCopy.push(data);
+        return robotsCopy;
+      });
+    }
     setRobots((prev) => {
       const robotsCopy = [...prev];
-      robotsCopy.push(robot);
-      return robotsCopy;
+      const newRobotsCopy = robotsCopy.map((robot) => {
+        if (robot.id === currentEditedRobotId) {
+          return {
+            ...robot,
+            avatar: data.avatar,
+            name: data.name,
+            purpose: data.purpose,
+          };
+        }
+        return robot;
+      });
+      return newRobotsCopy;
     });
+    setCurrentEditedRobotId("");
     handleToggleModal();
   };
 
@@ -43,6 +62,7 @@ export default function Homepage() {
   };
 
   const handleEditRobot = (robotId: string) => {
+    setCurrentEditedRobotId(robotId);
     setIsModalOpen(true);
   };
 
@@ -79,9 +99,14 @@ export default function Homepage() {
       </div>
 
       {isModalOpen && (
-        <AddNewRobotForm
-          onClose={handleToggleModal}
+        <RobotForm
+          onClose={() => {
+            handleToggleModal();
+            setCurrentEditedRobotId("");
+          }}
           handleSubmitForm={handleSubmitForm}
+          robots={robots}
+          currentEditedRobotId={currentEditedRobotId}
         />
       )}
     </main>

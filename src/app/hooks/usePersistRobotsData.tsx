@@ -14,12 +14,12 @@ export default function usePersistRobotsData() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("robots", JSON.stringify(robots));
-    return () => {
-      if (robots.length) {
-        localStorage.setItem("robots", JSON.stringify(robots));
-      }
-    };
+    if (robots.length) {
+      localStorage.setItem("robots", JSON.stringify(robots));
+    }
+    // return () => {
+    //   localStorage.setItem("robots", JSON.stringify(robots));
+    // };
   }, [robots]);
 
   return {
