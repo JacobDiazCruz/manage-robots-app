@@ -18,7 +18,7 @@ export default function Homepage() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
   const { handleDeleteRobot } = useDeleteRobot();
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [showRobotFormModal, setShowRobotFormModal] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] =
     useState<boolean>(false);
   const [selectedRobotId, setSelectedRobotId] = useState<string>("");
@@ -26,7 +26,7 @@ export default function Homepage() {
   const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
   const handleToggleModal = () => {
-    setIsModalOpen((prev) => !prev);
+    setShowRobotFormModal((prev) => !prev);
   };
 
   const handleSubmitForm = ({ data, submitType }: SubmitRobotFormParams) => {
@@ -68,11 +68,6 @@ export default function Homepage() {
     handleToggleModal();
   };
 
-  const handleShowEditRobotForm = (robotId: string) => {
-    setSelectedRobotId(robotId);
-    setIsModalOpen(true);
-  };
-
   return (
     <main
       id="homepage"
@@ -101,16 +96,20 @@ export default function Homepage() {
                 key={index}
                 robot={robot}
                 handleDeleteRobot={() => {
-                  handleDeleteRobot(robot.id, setRobots);
+                  setSelectedRobotId(robot.id);
+                  setShowDeleteConfirmation(true);
                 }}
-                handleEditRobot={handleShowEditRobotForm}
+                handleEditRobot={() => {
+                  setSelectedRobotId(robot.id);
+                  setShowRobotFormModal(true);
+                }}
               />
             ))}
           </ul>
         </section>
       </div>
 
-      {isModalOpen && (
+      {showRobotFormModal && (
         <RobotForm
           onClose={() => {
             handleToggleModal();
@@ -125,6 +124,10 @@ export default function Homepage() {
       {showDeleteConfirmation && (
         <DeleteConfirmationModal
           onClose={() => setShowDeleteConfirmation(false)}
+          handleDeleteRobot={() => {
+            handleDeleteRobot(selectedRobotId, setRobots);
+            setShowDeleteConfirmation(false);
+          }}
         />
       )}
     </main>

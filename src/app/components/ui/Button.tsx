@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 interface ButtonProps {
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "tertiary" | "danger";
   size?: "small" | "medium" | "large";
   startIcon?: ReactNode;
   endIcon?: ReactNode;
@@ -17,6 +17,7 @@ const buttonVariants: Record<string, string> = {
   secondary:
     "bg-neutral-100 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 dark:text-neutral-200 text-neutral-700",
   tertiary: "bg-neutral-800 border border-neutral-800 text-neutral-200",
+  danger: "bg-red-500 text-white",
 };
 
 const buttonSizes: Record<string, string> = {

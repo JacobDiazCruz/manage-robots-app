@@ -8,7 +8,7 @@ import { Robot } from "../../types/robot";
 interface RobotItemProps {
   robot: Robot;
   handleDeleteRobot: () => void;
-  handleEditRobot: (_robotId: string) => void;
+  handleEditRobot: () => void;
 }
 
 export default function RobotItem({
@@ -32,7 +32,7 @@ export default function RobotItem({
           <IconButton onClick={handleDeleteRobot}>
             <BiTrash className="w-5 h-5 text-neutral-400" />
           </IconButton>
-          <IconButton onClick={() => handleEditRobot(robot.id)}>
+          <IconButton onClick={handleEditRobot}>
             <FiEdit2 className="w-5 h-5 text-neutral-400" />
           </IconButton>
         </div>
