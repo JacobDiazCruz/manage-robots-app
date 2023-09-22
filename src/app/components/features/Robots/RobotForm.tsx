@@ -81,7 +81,7 @@ export default function RobotForm({
   };
 
   return (
-    <Modal onClose={onClose} className="w-11/12 md:w-[600px] h-[550px]">
+    <Modal onClose={onClose} className="w-11/12 md:w-[600px] h-[520px]">
       <ModalHeader>
         <h1 className="font-semibold dark:text-white">
           {formType === "ADD" ? "Add New Robot" : "Edit Robot"}
@@ -90,7 +90,10 @@ export default function RobotForm({
       <ModalContent>
         <section>
           <div className="flex gap-2 items-center">
-            <div className="rounded-full border dark:border-neutral-700">
+            <div
+              className="rounded-full border dark:border-neutral-700 cursor-pointer"
+              onClick={handleToggleAvatarsDropdown}
+            >
               <Image src={avatar} alt="" width={80} height={80} />
             </div>
             <Button
