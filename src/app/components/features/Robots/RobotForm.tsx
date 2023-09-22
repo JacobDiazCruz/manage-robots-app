@@ -57,8 +57,10 @@ export default function RobotForm({
    * and editing an existing one.
    */
   const invokeHandleSubmitForm = () => {
-    const isValid = handleValidateExistingName();
-    if (!isValid) return false;
+    if (robots?.length) {
+      const isValid = handleValidateExistingName();
+      if (!isValid) return false;
+    }
 
     handleSubmitForm({
       data: {
