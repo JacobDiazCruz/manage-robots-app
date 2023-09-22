@@ -75,7 +75,9 @@ export default function Robots() {
   return (
     <div className="pt-10">
       <header className="flex justify-between items-center mb-5">
-        <h1 className="font-semibold text-xl dark:text-white">Robots</h1>
+        <h1 className="font-semibold text-xl dark:text-white">
+          Robots <span className="font-light">({robots?.length})</span>
+        </h1>
         {currentUser && (
           <Button onClick={handleToggleModal} startIcon={<AiOutlinePlus />}>
             Add new robot
