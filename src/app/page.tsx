@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import DeleteConfirmationModal from "./components/features/DeleteConfirmationModal";
 
 import EmptyList from "./components/features/EmptyList";
 import RobotForm from "./components/features/RobotForm";
@@ -9,14 +10,18 @@ import RobotItem from "./components/features/RobotItem";
 import Button from "./components/ui/Button";
 import Switch from "./components/ui/Switch";
 import useDarkTheme from "./hooks/useDarkTheme";
+import useDeleteRobot from "./hooks/useDeleteRobot";
 import usePersistRobotsData from "./hooks/usePersistRobotsData";
-import { Robot } from "./types/robot";
+import { Robot, SubmitRobotFormParams } from "./types/robot";
 
 export default function Homepage() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
+  const { handleDeleteRobot } = useDeleteRobot();
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [currentEditedRobotId, setCurrentEditedRobotId] = useState<string>("");
+  const [showDeleteConfirmation, setShowDeleteConfirmation] =
+    useState<boolean>(false);
+  const [selectedRobotId, setSelectedRobotId] = useState<string>("");
 
   const { robots, setRobots, isLoadingRobots } = usePersistRobotsData();
 
@@ -24,18 +29,30 @@ export default function Homepage() {
     setIsModalOpen((prev) => !prev);
   };
 
-  const handleSubmitForm = ({ data, submitType }: any) => {
+  const handleSubmitForm = ({ data, submitType }: SubmitRobotFormParams) => {
     if (submitType === "ADD") {
-      setRobots((prev) => {
-        const robotsCopy = [...prev];
-        robotsCopy.push(data);
-        return robotsCopy;
-      });
+      handleAddRobot(data);
     }
+    handleEditRobot(data);
+  };
+
+  const handleAddRobot = (data: Robot) => {
+    setRobots((prev) => {
+      const robotsCopy = [...prev];
+      robotsCopy.push(data);
+      return robotsCopy;
+    });
+  };
+
+  /**
+   * Update the values of the current edited robot from the robots list.
+   * Then empty the robot id and close the modal
+   */
+  const handleEditRobot = (data: Robot) => {
     setRobots((prev) => {
       const robotsCopy = [...prev];
       const newRobotsCopy = robotsCopy.map((robot) => {
-        if (robot.id === currentEditedRobotId) {
+        if (robot.id === selectedRobotId) {
           return {
             ...robot,
             avatar: data.avatar,
@@ -47,27 +64,20 @@ export default function Homepage() {
       });
       return newRobotsCopy;
     });
-    setCurrentEditedRobotId("");
+    setSelectedRobotId("");
     handleToggleModal();
   };
 
-  const handleRemoveRobot = (robotId: string) => {
-    setRobots((prev) => {
-      const robotsCopy = [...prev];
-      const filteredRobots = robotsCopy.filter(
-        (robotCopy) => robotCopy.id !== robotId
-      );
-      return filteredRobots;
-    });
-  };
-
-  const handleEditRobot = (robotId: string) => {
-    setCurrentEditedRobotId(robotId);
+  const handleShowEditRobotForm = (robotId: string) => {
+    setSelectedRobotId(robotId);
     setIsModalOpen(true);
   };
 
   return (
-    <main id="homepage" className="bg-neutral-50 dark:bg-neutral-900 h-[100vh]">
+    <main
+      id="homepage"
+      className="bg-neutral-50 dark:bg-neutral-900 min-h-[100vh]"
+    >
       <div className="w-[800px] mx-auto pt-10">
         <nav className="pb-10 flex">
           <div className="ml-auto">
@@ -90,8 +100,10 @@ export default function Homepage() {
               <RobotItem
                 key={index}
                 robot={robot}
-                handleRemoveRobot={handleRemoveRobot}
-                handleEditRobot={handleEditRobot}
+                handleDeleteRobot={() => {
+                  handleDeleteRobot(robot.id, setRobots);
+                }}
+                handleEditRobot={handleShowEditRobotForm}
               />
             ))}
           </ul>
@@ -102,11 +114,17 @@ export default function Homepage() {
         <RobotForm
           onClose={() => {
             handleToggleModal();
-            setCurrentEditedRobotId("");
+            setSelectedRobotId("");
           }}
           handleSubmitForm={handleSubmitForm}
           robots={robots}
-          currentEditedRobotId={currentEditedRobotId}
+          currentEditedRobotId={selectedRobotId}
+        />
+      )}
+
+      {showDeleteConfirmation && (
+        <DeleteConfirmationModal
+          onClose={() => setShowDeleteConfirmation(false)}
         />
       )}
     </main>

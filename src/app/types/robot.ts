@@ -6,3 +6,8 @@ export type Robot = {
   name: string;
   purpose: string;
 };
+
+export type SubmitRobotFormParams = {
+  data: Robot;
+  submitType: "ADD" | "EDIT";
+};

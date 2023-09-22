@@ -7,17 +7,17 @@ import { Robot } from "../../types/robot";
 
 interface RobotItemProps {
   robot: Robot;
-  handleRemoveRobot: (_robotId: string) => void;
+  handleDeleteRobot: () => void;
   handleEditRobot: (_robotId: string) => void;
 }
 
 export default function RobotItem({
   robot,
-  handleRemoveRobot,
+  handleDeleteRobot,
   handleEditRobot,
 }: RobotItemProps) {
   return (
-    <li className="w-full border dark:border-neutral-700 dark:bg-neutral-800 rounded-xl p-2 my-3">
+    <li className="w-full border bg-white dark:border-neutral-700 dark:bg-neutral-800 rounded-xl p-2 my-3">
       <div className="flex gap-2 items-center">
         <Image src={robot.avatar} alt="avatar" width={80} height={80} />
         <div className="w-1/2">
@@ -29,7 +29,7 @@ export default function RobotItem({
           </p>
         </div>
         <div className="flex ml-auto gap-1">
-          <IconButton onClick={() => handleRemoveRobot(robot.id)}>
+          <IconButton onClick={handleDeleteRobot}>
             <BiTrash className="w-5 h-5 text-neutral-400" />
           </IconButton>
           <IconButton onClick={() => handleEditRobot(robot.id)}>

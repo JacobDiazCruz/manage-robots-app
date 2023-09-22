@@ -3,7 +3,7 @@ import { v1 as uuidv1 } from "uuid";
 import Charlie from "../../../../public/charlie.png";
 
 import { useEffect, useState } from "react";
-import { Robot } from "../../types/robot";
+import { Robot, SubmitRobotFormParams } from "../../types/robot";
 import Button from "../ui/Button";
 import Modal, { ModalContent, ModalHeader } from "../ui/Modal";
 import TextareaField from "../ui/TextareaField";
@@ -12,7 +12,7 @@ import SelectAvatar from "./SelectAvatar";
 
 interface RobotFormProps {
   onClose: () => void;
-  handleSubmitForm: ({}) => void;
+  handleSubmitForm: ({}: SubmitRobotFormParams) => void;
   robots: Robot[];
   currentEditedRobotId: string;
 }
