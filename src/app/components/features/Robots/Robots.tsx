@@ -34,7 +34,6 @@ export default function Robots() {
   };
 
   const handleSubmitForm = ({ data, formType }: SubmitRobotFormParams) => {
-    console.log("formType", formType);
     if (formType === "ADD") {
       handleAddRobot(data);
     }
