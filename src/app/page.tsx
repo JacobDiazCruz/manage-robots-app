@@ -5,7 +5,10 @@ import { AiOutlinePlus } from "react-icons/ai";
 import DeleteConfirmationModal from "./components/features/DeleteConfirmationModal";
 
 import EmptyList from "./components/features/EmptyList";
-import LoginModal from "./components/features/LoginModal";
+import {
+  default as LoginModal,
+  default as RegisterModal,
+} from "./components/features/RegisterModal";
 import RobotForm from "./components/features/RobotForm";
 import RobotItem from "./components/features/RobotItem";
 import ViewDetailsModal from "./components/features/ViewDetailsModal";
@@ -26,6 +29,7 @@ export default function Homepage() {
   const [showViewRobotDetails, setShowViewRobotDetails] =
     useState<boolean>(false);
   const [showLoginModal, setShowLoginModal] = useState<boolean>(true);
+  const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
 
   const [selectedRobotId, setSelectedRobotId] = useState<string>("");
   const [viewedRobotData, setViewedRobotData] = useState<Robot | null>(null);
@@ -154,6 +158,10 @@ export default function Homepage() {
 
       {showLoginModal && (
         <LoginModal onClose={() => setShowLoginModal(false)} />
+      )}
+
+      {showRegisterModal && (
+        <RegisterModal onClose={() => setShowRegisterModal(false)} />
       )}
     </main>
   );

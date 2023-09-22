@@ -1,26 +1,21 @@
 import { useState } from "react";
+import { User } from "../../types/user";
 import Button from "../ui/Button";
 import Modal from "../ui/Modal";
 import TextField from "../ui/TextField";
 
-interface LoginModalProps {
+interface RegisterModalProps {
   onClose: () => void;
 }
 
 interface FormField {
   name: string;
   label: string;
-  type: "text" | "password"; // Add more types here
+  type: "text" | "password";
   value: string;
 }
 
-interface User {
-  username: string;
-  password: string;
-  [key: string]: string;
-}
-
-export default function LoginModal({ onClose }: LoginModalProps) {
+export default function RegisterModal({ onClose }: RegisterModalProps) {
   /**
    * Assuming that we will have additional textfields in the future,
    * it would be easier to scale if we store them in a configurable state rather than
