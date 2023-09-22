@@ -7,16 +7,29 @@ interface LoginModalProps {
   onClose: () => void;
 }
 
+interface FormField {
+  name: string;
+  label: string;
+  type: "text" | "password"; // Add more types here
+  value: string;
+}
+
+interface User {
+  username: string;
+  password: string;
+  [key: string]: string;
+}
+
 export default function LoginModal({ onClose }: LoginModalProps) {
   /**
    * Assuming that we will have additional textfields in the future,
    * it would be easier to scale if we store them in a configurable state rather than
    * modifying the fields directly in the codebase.
    */
-  const [formFields, setFormFields] = useState([
+  const [formFields, setFormFields] = useState<FormField[]>([
     {
-      name: "emailOrUsername",
-      label: "Email or username",
+      name: "username",
+      label: "Username",
       type: "text",
       value: "",
     },
@@ -50,6 +63,16 @@ export default function LoginModal({ onClose }: LoginModalProps) {
     });
   };
 
+  const handleRegisterNow = () => {
+    const newUser = {} as User;
+    formFields.forEach((field) => {
+      if (field.name !== "confirmPassword") {
+        newUser[field.name] = field.value;
+      }
+    });
+    localStorage.setItem("users", JSON.stringify(newUser));
+  };
+
   return (
     <Modal onClose={onClose} className="w-[900px] h-[500px]">
       <div className="flex h-full">
@@ -75,7 +98,7 @@ export default function LoginModal({ onClose }: LoginModalProps) {
             </div>
           ))}
           <div className="mt-5">
-            <Button size="large" className="w-full">
+            <Button size="large" className="w-full" onClick={handleRegisterNow}>
               Register now
             </Button>
           </div>
