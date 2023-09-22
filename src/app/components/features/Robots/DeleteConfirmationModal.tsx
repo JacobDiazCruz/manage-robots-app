@@ -13,7 +13,7 @@ export default function DeleteConfirmationModal({
   return (
     <Modal onClose={onClose}>
       <ModalHeader>
-        <p className="dark:text-white">
+        <p className="dark:text-white text-sm">
           Are you sure you want to delete this robot?
         </p>
         <div className="flex justify-between mt-5">

@@ -1,7 +1,7 @@
 "use client";
 
-import { User } from "@/src/app/types/user";
-import { useEffect, useState } from "react";
+import { useUser } from "@/src/app/store/User";
+import { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import useDarkTheme from "../../../hooks/useDarkTheme";
@@ -13,19 +13,11 @@ import UserDropdown from "./UserDropdown";
 
 export default function Navbar() {
   const { darkTheme, handleToggleDarkTheme } = useDarkTheme();
-  const currentPersistedUser = localStorage.getItem("currentUser") as string;
+  const { currentUser, setCurrentUser } = useUser();
 
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false);
   const [showUserDropdown, setShowUserDropdown] = useState<boolean>(false);
-
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    if (currentPersistedUser) {
-      setCurrentUser(JSON.parse(currentPersistedUser));
-    }
-  }, [currentPersistedUser]);
 
   return (
     <>

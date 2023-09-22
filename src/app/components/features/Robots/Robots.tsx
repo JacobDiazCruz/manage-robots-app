@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@/src/app/store/User";
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 
@@ -15,6 +16,7 @@ import ViewDetailsModal from "./ViewDetailsModal";
 
 export default function Robots() {
   const { handleDeleteRobot } = useDeleteRobot();
+  const { currentUser } = useUser();
 
   const [showRobotFormModal, setShowRobotFormModal] = useState<boolean>(false);
   const [showDeleteConfirmation, setShowDeleteConfirmation] =
@@ -74,9 +76,11 @@ export default function Robots() {
     <div className="pt-10">
       <header className="flex justify-between items-center mb-5">
         <h1 className="font-semibold text-xl dark:text-white">Robots</h1>
-        <Button onClick={handleToggleModal} startIcon={<AiOutlinePlus />}>
-          Add new robot
-        </Button>
+        {currentUser && (
+          <Button onClick={handleToggleModal} startIcon={<AiOutlinePlus />}>
+            Add new robot
+          </Button>
+        )}
       </header>
 
       <section className="list">
@@ -106,6 +110,7 @@ export default function Robots() {
           ))}
         </ul>
       </section>
+
       {showRobotFormModal && (
         <RobotForm
           onClose={() => {
