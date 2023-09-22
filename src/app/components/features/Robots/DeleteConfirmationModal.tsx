@@ -18,7 +18,9 @@ export default function DeleteConfirmationModal({
         </p>
         <div className="flex justify-between mt-5">
           <div className="flex gap-2 ml-auto">
-            <Button variant="secondary">No</Button>
+            <Button variant="secondary" onClick={onClose}>
+              No
+            </Button>
             <Button onClick={handleDeleteRobot} variant="danger">
               Yes
             </Button>
