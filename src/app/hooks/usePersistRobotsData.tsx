@@ -14,12 +14,9 @@ export default function usePersistRobotsData() {
   }, []);
 
   useEffect(() => {
-    if (robots.length) {
+    if (robots.length > 0) {
       localStorage.setItem("robots", JSON.stringify(robots));
     }
-    // return () => {
-    //   localStorage.setItem("robots", JSON.stringify(robots));
-    // };
   }, [robots]);
 
   return {

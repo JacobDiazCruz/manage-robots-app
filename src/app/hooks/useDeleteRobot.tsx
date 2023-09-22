@@ -11,6 +11,7 @@ export default function useDeleteRobot() {
       const filteredRobots = robotsCopy.filter(
         (robotCopy) => robotCopy.id !== robotId
       );
+      localStorage.setItem("robots", JSON.stringify(filteredRobots));
       return filteredRobots;
     });
   };
