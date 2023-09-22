@@ -24,22 +24,22 @@ export default function RobotItem({
     >
       <div className="flex gap-2 items-center">
         <Image src={robot.avatar} alt="avatar" width={80} height={80} />
-        <div className="w-1/2">
+        <section className="w-1/2">
           <h4 className="truncate dark:text-white font-semibold">
             {robot.name}
           </h4>
           <p className="text-neutral-500 text-sm dark:text-neutral-200 line-clamp-2 font-light">
             {robot.purpose}
           </p>
-        </div>
-        <div className="flex ml-auto gap-1">
+        </section>
+        <section className="flex ml-auto gap-1">
           <IconButton onClick={handleDeleteRobot}>
             <BiTrash className="w-5 h-5 text-neutral-400" />
           </IconButton>
           <IconButton onClick={handleEditRobot}>
             <FiEdit2 className="w-5 h-5 text-neutral-400" />
           </IconButton>
-        </div>
+        </section>
       </div>
     </li>
   );

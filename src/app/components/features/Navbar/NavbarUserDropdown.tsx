@@ -18,7 +18,7 @@ export default function NavbarUserDropdown({
   };
 
   return (
-    <div
+    <menu
       ref={userDropdownRef}
       className="absolute bg-white dark:bg-neutral-700 shadow-md border dark:border-neutral-700 w-[fit h-fit rounded-lg"
     >
@@ -32,6 +32,6 @@ export default function NavbarUserDropdown({
           </p>
         </li>
       </ul>
-    </div>
+    </menu>
   );
 }

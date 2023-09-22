@@ -14,7 +14,7 @@ export default function RobotAvatars({
   const avatarsDropdown = useOutsideClick(handleToggleAvatars);
 
   return (
-    <div
+    <menu
       ref={avatarsDropdown}
       className="fixed bg-neutral-50 shadow-md dark:bg-neutral-800 overflow-auto z-[700] w-[270px] h-[200px] border dark:border-neutral-700 rounded-lg"
     >
@@ -32,6 +32,6 @@ export default function RobotAvatars({
           </div>
         ))}
       </div>
-    </div>
+    </menu>
   );
 }

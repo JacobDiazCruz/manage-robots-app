@@ -39,7 +39,7 @@ export default function Navbar() {
               </Button>
             </>
           ) : (
-            <div className="relative">
+            <section className="relative">
               <button
                 className="flex items-center cursor-pointer"
                 onClick={() => setShowUserDropdown(true)}
@@ -53,11 +53,11 @@ export default function Navbar() {
               {showUserDropdown && (
                 <UserDropdown onClose={() => setShowUserDropdown(false)} />
               )}
-            </div>
+            </section>
           )}
-          <div className="ml-auto">
+          <section className="ml-auto">
             <Switch value={darkTheme} handleClick={handleToggleDarkTheme} />
-          </div>
+          </section>
         </div>
       </nav>
 

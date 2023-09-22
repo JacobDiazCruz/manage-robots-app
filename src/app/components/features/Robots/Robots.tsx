@@ -66,7 +66,7 @@ export default function Robots() {
   };
 
   return (
-    <div className="pt-10">
+    <article className="pt-10">
       <header className="flex justify-between items-center mb-5">
         <h1 className="font-semibold text-xl dark:text-white">
           Robots
@@ -149,6 +149,6 @@ export default function Robots() {
           robot={viewedRobotData as Robot}
         />
       )}
-    </div>
+    </article>
   );
 }
