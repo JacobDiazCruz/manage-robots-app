@@ -63,7 +63,7 @@ export default function NavbarLoginModal({
             />
           </div>
           <div className="mt-5">
-            <p className="text-red-500 mb-2">
+            <p className="text-red-500 mb-2 text-sm">
               {isLoginError && "Invalid username or password."}
             </p>
             <Button size="large" className="w-full" onClick={handleLoginNow}>

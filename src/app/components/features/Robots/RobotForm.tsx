@@ -74,7 +74,11 @@ export default function RobotForm({
   };
 
   const handleValidateExistingName = () => {
-    const robotFound = robots?.find((robot) => robot.name === name);
+    const robotFound = robots?.find((robot) => {
+      if (currentEditedRobotId !== robot.id && robot.name === name) {
+        return robot;
+      }
+    });
     if (robotFound) {
       setSubmitError("Name already exists.");
       return false;
